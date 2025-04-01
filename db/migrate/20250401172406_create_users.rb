@@ -1,6 +1,6 @@
 class CreateUsers < ActiveRecord::Migration[8.0]
   def change
-    create_table :users do |t|
+    create_table :users, id: :string, default: -> { "uuid()" }, limit: 36 do |t|
       t.string :email_address, null: false
       t.string :password_digest, null: false
 
