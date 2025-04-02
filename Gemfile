@@ -40,6 +40,7 @@ end
 
 group :development do
   gem "web-console"
+  gem "faker"
 end
 
 group :test do
