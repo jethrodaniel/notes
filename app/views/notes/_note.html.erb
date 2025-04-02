@@ -1,12 +1,5 @@
-<div id="<%= dom_id note %>">
-  <p>
-    <strong>Content:</strong>
-    <%= note.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= note.user_id %>
-  </p>
-
-</div>
+<%= link_to edit_note_path(note),
+  id: dom_id(note),
+  class: "flex flex-col rounded-lg border px-4 whitespace-pre-line" do %>
+  <%= note.content %>
+<% end %>

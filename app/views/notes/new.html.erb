@@ -1,11 +1,14 @@
 <% content_for :title, "New note" %>
 
-<h1>New note</h1>
+<div class="flex flex-col items-center md:w-2/3 w-full h-full p-2 gap-4">
+  <div class="flex w-full justify-between">
+    <%= link_to notes_path,
+      class: "p-2 rounded-lg" do %>
+       <%= image_tag "arrow-left.svg", class: "w-6" %>
+    <% end %>
+  </div>
 
-<%= render "form", note: @note %>
-
-<br>
-
-<div>
-  <%= link_to "Back to notes", notes_path %>
+  <div class="flex-1 w-full">
+    <%= render "form", note: @note %>
+  </div>
 </div>
