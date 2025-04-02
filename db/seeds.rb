@@ -7,7 +7,13 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-User.create!(
+user = User.find_by(email_address: ENV.fetch('EXAMPLE_USER_EMAIL')) ||
+  User.create!(
   email_address: ENV.fetch('EXAMPLE_USER_EMAIL'),
   password: ENV.fetch('EXAMPLE_USER_PASSWORD')
 )
+
+20.times do
+  content = Faker::Lorem.paragraph(sentence_count: rand(1..8))
+  Note.create!(user:, content:)
+end
