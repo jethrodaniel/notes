@@ -12,7 +12,9 @@
       </div>
     <% end %>
 
-    <%= form.textarea :content, rows: 10, class: "p-4 w-full rounded-lg" %>
+    <%= form.textarea :content,
+      data: { controller: "textarea", textarea_target: "textarea" },
+      class: "p-4 w-full h-auto rounded-lg" %>
 
   </div>
 
