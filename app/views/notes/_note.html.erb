@@ -1,5 +1,6 @@
 <%= link_to edit_note_path(note),
   id: dom_id(note),
-  class: "flex flex-col rounded-lg border px-4 whitespace-pre-line" do %>
-  <%= note.content %>
+  class: "flex flex-col rounded-lg border px-4" do %>
+  <%# NOTE: must be on a single line, due to `whitespace: pre-line` %>
+  <p class="whitespace-pre-line"><%= note.content %></p>
 <% end %>
