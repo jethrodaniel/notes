@@ -5,7 +5,7 @@
     <%= form_with url: "/search",
       method: :get,
       class: "w-full md:w-1/2 flex flex-col justify-center" do |form| %>
-       <div class="flex items-center border rounded-full">
+       <div class="flex items-center border border-slate-400 shadow rounded-full">
          <%= image_tag "magnifying-glass.svg", class: "w-6 ml-4" %>
          <%=
            form.search_field :search,
@@ -17,7 +17,7 @@
 
     <div class="hidden md:flex flex-1 justify-end">
       <%= link_to "Add a note", new_note_path,
-        class: "bg-white p-2 m-2 border rounded-full" %>
+        class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full" %>
     </div>
   </nav>
 
@@ -29,6 +29,6 @@
 
   <div class="flex md:hidden bottom-0 sticky w-full justify-center">
     <%= link_to "Add a note", new_note_path,
-      class: "bg-white p-2 m-2 border rounded-full flex items-center justify-center w-1/2" %>
+      class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full flex items-center justify-center w-1/2" %>
   </div>
 </div>

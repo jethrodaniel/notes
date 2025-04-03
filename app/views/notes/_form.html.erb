@@ -1,5 +1,5 @@
 <%= form_with model: note do |form| %>
-  <div class="flex flex-col rounded-lg border w-full">
+  <div class="flex flex-col rounded-lg border border-slate-400 shadow w-full">
     <% if note.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
@@ -19,6 +19,6 @@
   </div>
 
   <div class="bottom-0 sticky w-full flex justify-center">
-    <%= form.submit class: "bg-white p-2 m-2 border rounded-full flex items-center justify-center w-1/2" %>
+    <%= form.submit class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full flex items-center justify-center w-1/2" %>
   </div>
 <% end %>
