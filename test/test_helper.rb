@@ -13,3 +13,24 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
   end
 end
+
+#--
+
+module IntegrationTestHelpers
+  def login_as user
+    post session_url, params: {
+      email_address: user.email_address,
+      password: "password"
+    }
+  end
+
+  def assert_requires_login
+    yield
+
+    assert_redirected_to new_session_path
+  end
+end
+
+ActiveSupport.on_load(:action_dispatch_integration_test) do
+  include IntegrationTestHelpers
+end
