@@ -7,10 +7,19 @@
        <%= image_tag "arrow-left.svg", class: "w-6" %>
     <% end %>
 
-    <%= button_to edit_note_path(@note),
-      class: "p-2 rounded-lg" do %>
-       <%= image_tag "star.svg", class: "w-6" %>
-    <% end %>
+    <div class="flex items-center gap-2">
+      <%= button_to edit_note_path(@note),
+        class: "p-2 rounded-lg" do %>
+         <%= image_tag "star.svg", class: "w-6" %>
+      <% end %>
+
+      <%= button_to note_path(@note),
+        method: :delete,
+        data: { turbo_confirm: "Are you sure?" },
+        class: "p-2 rounded-lg" do %>
+         <%= image_tag "trash.svg", class: "w-6" %>
+      <% end %>
+    </div>
   </div>
 
   <div class="flex-1 w-full">
