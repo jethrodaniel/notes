@@ -1,9 +1,9 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[ show edit update destroy ]
+  before_action :set_note, only: %i[show edit update destroy]
 
   # GET /notes or /notes.json
   def index
-    @notes = Note.all.order(created_at: :desc)
+    @notes = Note.order(created_at: :desc)
   end
 
   # GET /notes/1 or /notes/1.json
@@ -58,13 +58,14 @@ class NotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_note
-      @note = Note.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def note_params
-      params.expect(note: [:content]).merge(user: Current.user)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_note
+    @note = Note.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def note_params
+    params.expect(note: [:content]).merge(user: Current.user)
+  end
 end
