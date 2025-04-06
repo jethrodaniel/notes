@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Setup
+
+For `cuprite` system tests
+
+```
+snap install chromium
+```
