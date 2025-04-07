@@ -1,9 +1,10 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  title: Note one title
   content: Note one content
   user: one
 
 two:
-  content: Note two content
-  user: two
+  content: Note two doesn't have a title
+  user: one

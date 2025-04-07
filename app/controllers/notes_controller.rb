@@ -66,6 +66,6 @@ class NotesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def note_params
-    params.expect(note: [:content]).merge(user: Current.user)
+    params.expect(note: [:title, :content]).merge(user: Current.user)
   end
 end

@@ -13,10 +13,15 @@
       </div>
     <% end %>
 
+    <%= form.text_field :title,
+      placeholder: "Title",
+      class: "pt-4 pl-4 pb-2 rounded-t-lg text-xl" %>
+
     <%= form.label :content, class: "sr-only" %>
     <%= form.textarea :content,
+      placeholder: "Content",
       data: { controller: "textarea", textarea_target: "textarea" },
-      class: "p-4 w-full h-full rounded-lg" %>
+      class: "p-4 w-full h-full rounded-b-lg" %>
   </div>
 
   <div class="w-full flex justify-center pt-4">
