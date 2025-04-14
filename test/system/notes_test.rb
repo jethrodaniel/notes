@@ -16,8 +16,9 @@ class NotesTest < ApplicationSystemTestCase
 
   test "search notes" do
     visit notes_url
+
     assert_field placeholder: "Search your notes"
-    
+
     fill_in "Search your notes", with: "TODO"
 
     skip :TODO
@@ -40,6 +41,7 @@ class NotesTest < ApplicationSystemTestCase
     assert_link "Back", href: notes_path
 
     click_on "Back"
+
     assert_field placeholder: "Search your notes"
     assert_current_path notes_path
   end
