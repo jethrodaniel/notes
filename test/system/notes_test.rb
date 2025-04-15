@@ -36,7 +36,7 @@ class NotesTest < ApplicationSystemTestCase
   end
 
   test "update page has a back button" do
-    visit note_url(@note)
+    visit edit_note_url(@note)
 
     assert_link "Back", href: notes_path
 
@@ -47,9 +47,7 @@ class NotesTest < ApplicationSystemTestCase
   end
 
   test "update a note" do
-    visit note_url(@note)
-
-    click_on "Edit this note", match: :first
+    visit edit_note_url(@note)
 
     fill_in "Content", with: @note.content
     click_on "Update Note"
@@ -57,14 +55,23 @@ class NotesTest < ApplicationSystemTestCase
     assert_current_path notes_path
   end
 
+  test "delete a note, but dismiss alert" do
+    visit edit_note_url(@note)
+
+    dismiss_confirm "Destroy this note?" do
+      click_button "Destroy this note"
+    end
+
+    assert_current_path edit_note_url(@note)
+  end
+
   test "delete a note" do
-    visit note_url(@note)
+    visit edit_note_url(@note)
 
-    skip :TODO
-
-    click_on "Destroy this note", match: :first
+    accept_confirm "Destroy this note?" do
+      click_button "Destroy this note"
+    end
 
     assert_current_path notes_path
-    assert_text "Note moved to trash. Undo?"
   end
 end

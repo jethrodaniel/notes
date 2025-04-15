@@ -1,6 +1,7 @@
 en:
   shared:
     rate_limit_try_again_later: Try again later.
+    back_button: Back
   sessions:
     create:
       failure: Try another email address or password.
@@ -13,5 +14,8 @@ en:
       success: Password has been reset.
       failure: Passwords did not match.
   notes:
+    edit:
+      confirm_destroy: Destroy this note?
+      destroy_button: Destroy this note
     destroy:
       success: Note was successfully destroyed.

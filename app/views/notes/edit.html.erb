@@ -5,6 +5,7 @@
     <%= link_to notes_path,
       class: "p-2 rounded-lg" do %>
        <%= image_tag "arrow-left.svg", class: "w-6" %>
+        <div class="sr-only"><%= t("shared.back_button") %></div>
     <% end %>
 
     <div class="flex items-center gap-2">
@@ -15,9 +16,10 @@
 
       <%= button_to note_path(@note),
         method: :delete,
-        data: { turbo_confirm: "Are you sure?" },
+        data: { turbo_confirm: t(".confirm_destroy") },
         class: "p-2 rounded-lg" do %>
          <%= image_tag "trash.svg", class: "w-6" %>
+         <div class="sr-only"><%= t(".destroy_button") %></div>
       <% end %>
     </div>
   </nav>
