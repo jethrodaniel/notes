@@ -14,7 +14,13 @@ end
 require "capybara/cuprite"
 
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
-  driven_by :cuprite, screen_size: [1400, 1400]
+  if ENV["BROWSER"].in? %w[chrome chromium]
+    driven_by :cuprite, screen_size: [1400, 1400]
+  else
+    driven_by :selenium,
+      using: ENV["GUI"] ? :firefox : :headless_firefox,
+      screen_size: [1400, 1400]
+  end
 
   include SystemTestHelpers
 end
