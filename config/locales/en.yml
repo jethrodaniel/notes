@@ -8,7 +8,7 @@ en:
     mailer_subject: Reset your password
     invalid_reset_link: Password reset link is invalid or has expired.
     create:
-      success: Password reset instructions sent (if user with that email address exists).
+      success: Password reset instructions sent if that user exists.
     update:
       success: Password has been reset.
       failure: Passwords did not match.
