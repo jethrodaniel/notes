@@ -8,6 +8,12 @@ en:
   passwords:
     mailer_subject: Reset your password
     invalid_reset_link: Password reset link is invalid or has expired.
+    new:
+      forgot_your_password: Forgot your password?
+      email_address_placeholder: Enter your email address
+      email_address_label: Email address
+      email_reset_instructions: Email reset instructions
+      sign_in_instead: Sign in instead
     create:
       success: Password reset instructions sent if that user exists.
     update:
