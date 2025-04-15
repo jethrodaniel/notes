@@ -2,7 +2,14 @@ en:
   shared:
     rate_limit_try_again_later: Try again later.
     back_button: Back
+    application_title: Notes
   sessions:
+    new:
+      sign_in: Sign in
+      email_address_label: Email address
+      email_address_placeholder: Enter your email address
+      password_label: Password
+      password_placeholder: Enter your password
     create:
       failure: Try another email address or password.
   passwords:

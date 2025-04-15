@@ -1,33 +1,33 @@
+<% content_for :title, t(".sign_in") %>
+
 <%= form_with url: session_path,
   class: "flex flex-col w-full md:w-1/3 h-full items-center p-8 gap-4" do |form| %>
   <h1 class="text-2xl font-bold py-6">
-    Notes
+    <%= t("shared.application_title") %>
   </h1>
 
   <%= render 'layouts/flash' %>
 
-  <%= form.label :email_address, class: "w-full" %>
+  <%= form.label :email_address, t(".email_address_label"), class: "w-full" %>
   <%= form.email_field :email_address,
     required: true,
     autofocus: true,
     autocomplete: "username",
-    placeholder: "Enter your email address",
+    placeholder: t(".email_address_placeholder"),
     value: params[:email_address],
     class: "w-full border border-slate-400 shadow rounded-lg p-2"
   %>
-  <%= form.label :password, class: "w-full" %>
+  <%= form.label :password, t(".password_label"), class: "w-full" %>
   <%= form.password_field :password,
     required: true,
     autocomplete: "current-password",
-    placeholder: "Enter your password",
+    placeholder: t(".password_placeholder"),
     class: "w-full border border-slate-400 shadow rounded-lg p-2"
   %>
 
-  <%= form.submit "Sign in",
+  <%= form.submit t(".sign_in"),
     class: "w-full border border-slate-400 shadow rounded-full mt-6 p-1"
   %>
 
-  <%= link_to "Forgot password?", new_password_path,
-    class: "underline"
-  %>
+  <%= link_to t(".forgot_password"), new_password_path, class: "underline" %>
 <% end %>
