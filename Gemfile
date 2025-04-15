@@ -10,7 +10,6 @@ gem "jsbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 gem "cssbundling-rails"
-gem "jbuilder"
 gem "bcrypt", "~> 3.1.7"
 
 gem "tzinfo-data", platforms: %i[windows jruby]
