@@ -7,7 +7,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
- test "#edit with valid token" do
+  test "#edit with valid token" do
     get edit_password_path(users(:one).password_reset_token)
 
     assert_response :success

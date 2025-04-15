@@ -4,3 +4,7 @@ inherit_gem:
 # @user = User.find_by_password_reset_token!(params[:token])
 Rails/DynamicFindBy:
   Enabled: false
+
+Layout/LineLength:
+  Enabled: true
+  Max: 80
