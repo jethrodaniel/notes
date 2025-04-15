@@ -8,3 +8,6 @@ Rails/DynamicFindBy:
 Layout/LineLength:
   Enabled: true
   Max: 80
+
+Minitest/MultipleAssertions:
+  Max: 10
