@@ -14,6 +14,13 @@ en:
       email_address_label: Email address
       email_reset_instructions: Email reset instructions
       sign_in_instead: Sign in instead
+    edit:
+      update_your_password: Update your password
+      password_label: Password
+      password_placeholder: Enter new password
+      password_confirmation_label: Password confirmation
+      password_confirmation_placeholder: Repeat new password
+      save: Save
     create:
       success: Password reset instructions sent if that user exists.
     update:
