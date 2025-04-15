@@ -13,6 +13,8 @@ class SessionsTest < ApplicationSystemTestCase
       type: "password",
       placeholder: "Enter your password"
     assert_button "Sign in"
+
+    assert_link "Forgot your password?", href: new_password_path
   end
 
   test "sign in page with invalid credentials" do

@@ -10,6 +10,7 @@ en:
       email_address_placeholder: Enter your email address
       password_label: Password
       password_placeholder: Enter your password
+      forgot_your_password: Forgot your password?
     create:
       failure: Try another email address or password.
   passwords:
