@@ -14,6 +14,9 @@ en:
       success: Password has been reset.
       failure: Passwords did not match.
   notes:
+    index:
+      add_a_note: Add a note
+      search_placeholder: Search your notes
     edit:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note

@@ -5,19 +5,19 @@
     <%= form_with url: "/search",
       method: :get,
       class: "w-full md:w-1/2 flex flex-col justify-center" do |form| %>
-       <div class="flex items-center border border-slate-400 shadow rounded-full">
+       <div class="flex items-center border border-slate-400 shadow rounded-full hover:border-3">
          <%= image_tag "magnifying-glass.svg", class: "w-6 ml-4" %>
          <%=
            form.search_field :search,
              class: "w-full h-full rounded-r-full p-2",
-             placeholder: "Search your notes"
+             placeholder: t(".search_placeholder")
          %>
        </div>
     <% end %>
 
     <div class="hidden md:flex flex-1 justify-end">
-      <%= link_to "Add a note", new_note_path,
-        class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full" %>
+      <%= link_to t(".add_a_note"), new_note_path,
+        class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full hover:bg-slate-100 focus:bg-slate-100" %>
     </div>
   </nav>
 
