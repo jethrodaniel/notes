@@ -1,34 +1,37 @@
 <% content_for :title, "Notes" %>
 
-<div class="flex flex-col items-center md:w-5/6 w-full h-full p-2 gap-4">
-  <nav class="flex justify-center md:justify-start w-full">
-    <%= form_with url: "/search",
-      method: :get,
-      class: "w-full md:w-1/2 flex flex-col justify-center" do |form| %>
-       <div class="flex items-center border border-slate-400 shadow rounded-full hover:border-3">
-         <%= image_tag "magnifying-glass.svg", class: "w-6 ml-4" %>
-         <%=
-           form.search_field :search,
-             class: "w-full h-full rounded-r-full p-2",
-             placeholder: t(".search_placeholder")
-         %>
-       </div>
-    <% end %>
+<div class="flex-1 flex flex-col w-full items-center">
+  <div class="flex-1 flex flex-col items-center md:w-5/6 w-full h-full p-2 gap-4">
+    <nav class="flex justify-center md:justify-start w-full">
+      <%= form_with url: "/search",
+        method: :get,
+        class: "w-full md:w-1/2 flex flex-col justify-center" do |form| %>
+         <div class="flex items-center border border-slate-400 shadow rounded-full hover:border-3">
+           <%= image_tag "magnifying-glass.svg", class: "w-6 ml-4" %>
+           <%=
+             form.search_field :search,
+               class: "w-full h-full rounded-r-full p-2",
+               placeholder: t(".search_placeholder")
+           %>
+         </div>
+      <% end %>
 
-    <div class="hidden md:flex flex-1 justify-end">
-      <%= link_to t(".add_a_note"), new_note_path,
-        class: "bg-white py-2 px-4 border border-slate-400 shadow rounded-full hover:bg-slate-100 focus:bg-slate-100" %>
+      <div class="hidden md:flex flex-1 justify-end">
+        <%= link_to t(".add_a_note"), new_note_path,
+          class: "bg-white py-2 px-4 border border-slate-400 shadow rounded-full hover:bg-slate-100 focus:bg-slate-100" %>
+      </div>
+    </nav>
+
+    <div class="flex-1 grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
+      <% @notes.each do |note| %>
+        <%= render note %>
+      <% end %>
     </div>
-  </nav>
+  </div>
 
-  <div class="flex-1 grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
-    <% @notes.each do |note| %>
-      <%= render note %>
+    <%= link_to new_note_path,
+      class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] p-2 border border-slate-400 bg-slate-100 shadow rounded-lg size-16 z-10" do %>
+      <%= image_tag "plus.svg", class: "w-6" %>
+      <div class="sr-only"><%= t(".add_a_note") %></div>
     <% end %>
-  </div>
-
-  <div class="flex md:hidden bottom-4 sticky w-full justify-center z-10">
-    <%= link_to "Add a note", new_note_path,
-      class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full flex items-center justify-center w-2/3" %>
-  </div>
 </div>
