@@ -6,7 +6,7 @@
       <%= form_with url: "/search",
         method: :get,
         class: "w-full md:w-1/2 flex flex-col justify-center" do |form| %>
-         <div class="flex items-center border border-slate-400 shadow rounded-full hover:border-3">
+         <div class="flex items-center border border-slate-400 shadow rounded-full hover:bg-slate-100">
            <%= image_tag "magnifying-glass.svg", class: "w-6 ml-4" %>
            <%=
              form.search_field :search,
