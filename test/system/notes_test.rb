@@ -35,6 +35,15 @@ class NotesTest < ApplicationSystemTestCase
     assert_text @note.content
   end
 
+  test "view a note" do
+    visit edit_note_url(@note)
+
+    assert_field "Content", text: @note.content
+    assert_text "Edited #{@note.updated_at}"
+
+    assert_button "Update Note"
+  end
+
   test "update page has a back button" do
     visit edit_note_url(@note)
 
