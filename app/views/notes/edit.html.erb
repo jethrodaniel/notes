@@ -9,6 +9,10 @@
     <% end %>
 
     <div class="flex items-center gap-2">
+      <small class="text-xs font-light">
+        <%= "Edited #{@note.updated_at}" %>
+      </small>
+
       <%= button_to edit_note_path(@note),
         class: "p-2 rounded-lg hover:bg-slate-100 focus:bg-slate-100" do %>
          <%= image_tag "star.svg", class: "w-6" %>
