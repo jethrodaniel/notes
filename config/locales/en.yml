@@ -41,5 +41,9 @@ en:
     edit:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note
+    create:
+      success: Note was successfully created.
+    update:
+      success: Note was successfully updated.
     destroy:
       success: Note was successfully destroyed.

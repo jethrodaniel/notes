@@ -20,7 +20,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to notes_path }
+        format.html { redirect_to notes_path, notice: t(".success") }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
@@ -30,7 +30,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to notes_path }
+        format.html { redirect_to notes_path, notice: t(".success") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
