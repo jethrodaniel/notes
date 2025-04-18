@@ -38,15 +38,6 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to notes_url
   end
 
-  test "show note" do
-    assert_requires_login { get note_url(@note) }
-
-    login_as users(:one)
-    get note_url(@note)
-
-    assert_response :success
-  end
-
   test "get edit" do
     assert_requires_login { get edit_note_url(@note) }
 

@@ -39,6 +39,7 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to notes_path, notice: t(".success") }
+        format.turbo_stream
       else
         format.html { render :edit, status: :unprocessable_entity }
       end

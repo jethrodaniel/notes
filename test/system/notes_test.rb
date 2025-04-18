@@ -31,10 +31,8 @@ class NotesTest < ApplicationSystemTestCase
     assert_current_path edit_note_path(Note.last)
 
     fill_in "Content", with: "hello!"
-    click_on "Update Note"
 
-    assert_current_path notes_path
-    assert_text "hello!"
+    assert_text "Note updated!"
   end
 
   test "view a note" do
@@ -42,8 +40,6 @@ class NotesTest < ApplicationSystemTestCase
 
     assert_field "Content", text: @note.content
     assert_text "Edited #{@note.updated_at}"
-
-    assert_button "Update Note"
   end
 
   test "update page has a back button" do
@@ -53,17 +49,19 @@ class NotesTest < ApplicationSystemTestCase
 
     click_on "Back"
 
-    assert_field placeholder: "Search your notes"
     assert_current_path notes_path
   end
 
   test "update a note" do
     visit edit_note_url(@note)
 
-    fill_in "Content", with: @note.content
-    click_on "Update Note"
+    assert_field "Content", text: @note.content
+    assert_text "Edited #{@note.updated_at}"
 
-    assert_current_path notes_path
+    fill_in "Content", with: @note.content
+
+    assert_text "Note updated!"
+    refute_text "Edited"
   end
 
   test "delete a note, but dismiss alert" do

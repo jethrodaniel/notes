@@ -45,5 +45,6 @@ en:
       success: Note was successfully created.
     update:
       success: Note was successfully updated.
+      saved: 'Note updated!'
     destroy:
       success: Note was successfully destroyed.
