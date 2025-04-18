@@ -21,10 +21,8 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.save
         format.html { redirect_to notes_path }
-        format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -33,10 +31,8 @@ class NotesController < ApplicationController
     respond_to do |format|
       if @note.update(note_params)
         format.html { redirect_to notes_path }
-        format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @note.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,7 +44,6 @@ class NotesController < ApplicationController
       format.html do
         redirect_to notes_path, status: :see_other, notice: t(".success")
       end
-      format.json { head :no_content }
     end
   end
 
