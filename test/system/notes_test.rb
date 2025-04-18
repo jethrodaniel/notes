@@ -28,11 +28,13 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
     click_on "Add a note"
 
-    fill_in "Content", with: @note.content
-    click_on "Create Note"
+    assert_current_path edit_note_path(Note.last)
+
+    fill_in "Content", with: "hello!"
+    click_on "Update Note"
 
     assert_current_path notes_path
-    assert_text @note.content
+    assert_text "hello!"
   end
 
   test "view a note" do

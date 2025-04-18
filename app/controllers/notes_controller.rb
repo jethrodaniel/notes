@@ -9,7 +9,15 @@ class NotesController < ApplicationController
   end
 
   def new
-    @note = Note.new
+    @note = Note.new(content: "", user: Current.user)
+
+    respond_to do |format|
+      if @note.save
+        format.html { redirect_to edit_note_path(@note) }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
