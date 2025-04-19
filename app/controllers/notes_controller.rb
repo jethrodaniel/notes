@@ -4,10 +4,12 @@ class NotesController < ApplicationController
   def index
     query = params[:q]
 
+    user_notes = Note.where(user: Current.user)
+
     @notes = if query.present?
-      Note.full_text_search(query)
+      user_notes.full_text_search(query)
     else
-      Note.order(created_at: :desc)
+      user_notes.order(created_at: :desc)
     end
   end
 

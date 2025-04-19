@@ -91,8 +91,27 @@ class NotesTest < ApplicationSystemTestCase
     assert_link "Clear", href: notes_path
     assert_current_path notes_url(q: query)
     assert_field :q, with: query
-
     assert_text note.content
+  end
+
+  test "search is limited to the user's own notes" do
+    note = Note.create! user: users(:two), content: "José"
+
+    visit notes_url
+
+    assert_field :q, placeholder: "Search your notes"
+
+    Note.rebuild_full_text_search
+
+    query = "jose"
+    fill_in "Notes search", with: query
+    click_button "Search"
+
+    assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+    refute_text note.content
   end
 
   test "create a note" do
