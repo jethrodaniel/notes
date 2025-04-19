@@ -114,6 +114,22 @@ class NotesTest < ApplicationSystemTestCase
     refute_text note.content
   end
 
+  test "search auto-submits" do
+    return if javascript_disabled?
+
+    visit notes_url
+
+    Note.rebuild_full_text_search
+
+    query = "missing"
+    fill_in "Notes search", with: query
+
+    assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+  end
+
   test "create a note" do
     visit notes_url
 
