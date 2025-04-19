@@ -130,6 +130,28 @@ class NotesTest < ApplicationSystemTestCase
     assert_field :q, with: query
   end
 
+  test "search clear" do
+    visit notes_url
+
+    Note.rebuild_full_text_search
+
+    query = notes(:one).content
+    fill_in "Notes search", with: query
+    click_button "Search" if javascript_disabled?
+
+    assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+
+    click_on "Clear"
+
+    assert_current_path notes_url
+    assert_field :q, placeholder: "Search your notes"
+    refute_text "Showing", normalize_ws: true
+    refute_link "Clear"
+  end
+
   test "create a note" do
     visit notes_url
 

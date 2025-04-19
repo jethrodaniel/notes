@@ -14,7 +14,11 @@
               class: "w-full h-full rounded-l-lg p-2 hover:bg-slate-100",
               placeholder: t(".query_placeholder"),
               value: params[:q],
-              data: { action: "input->auto-submit#submit" }
+              data: {
+                action: "input->auto-submit#submit",
+                turbo_permanent: true,
+                controller: "notes-search"
+              }
           %>
           <%= button_tag type: :submit, name: nil, class: "min-w-12 flex h-full items-center justify-center rounded-r-lg hover:bg-slate-100" do %>
             <%= image_tag "magnifying-glass.svg", class: "w-6" %>
