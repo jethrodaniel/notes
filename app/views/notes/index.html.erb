@@ -43,7 +43,7 @@
         </div>
 
         <%= link_to notes_path,
-          data: { action: "notes-search#click" },
+          data: { action: "notes-search#click:stop" },
           class: "underline hover:bg-slate-100" do %>
           <%= t(".clear") %>
         <% end %>
