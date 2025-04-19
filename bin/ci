@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -ex
+
+BROWSER=rack-test bin/rails test:all
+BROWSER=chrome bin/rails test:system
