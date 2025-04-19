@@ -41,10 +41,11 @@ en:
     edit:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note
+      edited_at: Edited %{time}
     create:
       success: Note was successfully created.
     update:
       success: Note was successfully updated.
-      saved: 'Note updated!'
+      edited_just_now: Edited just now
     destroy:
       success: Note was successfully destroyed.

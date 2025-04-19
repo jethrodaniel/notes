@@ -1,5 +1,5 @@
 <%= turbo_stream.replace "#{dom_id(@note)}_edited_at" do %>
   <%= render "notes/edited_at", note: @note do %>
-    <%= t("notes.update.saved") %>
+    <%= t("notes.update.edited_just_now") %>
   <% end %>
 <% end %>

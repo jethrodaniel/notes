@@ -32,7 +32,7 @@ class NotesTest < ApplicationSystemTestCase
 
     fill_in "Content", with: "hello!"
 
-    assert_text "Note updated!"
+    assert_text "Edited just now"
   end
 
   test "view a note" do
@@ -60,8 +60,7 @@ class NotesTest < ApplicationSystemTestCase
 
     fill_in "Content", with: @note.content
 
-    assert_text "Note updated!"
-    refute_text "Edited"
+    assert_text "Edited just now"
   end
 
   test "delete a note, but dismiss alert" do

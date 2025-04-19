@@ -10,7 +10,7 @@
 
     <div class="flex items-center">
       <%= render "notes/edited_at", note: @note do %>
-        <%= "Edited #{@note.updated_at}" %>
+        <%= t("notes.edit.edited_at", time: @note.updated_at) %>
       <% end %>
     </div>
 
