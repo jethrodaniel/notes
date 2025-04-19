@@ -130,7 +130,7 @@ class NotesTest < ApplicationSystemTestCase
     assert_field :q, with: query
   end
 
-  test "search clear" do
+  test "search clear link" do
     visit notes_url
 
     Note.rebuild_full_text_search
@@ -148,6 +148,32 @@ class NotesTest < ApplicationSystemTestCase
 
     assert_current_path notes_url
     assert_field :q, placeholder: "Search your notes"
+
+    refute_text "Showing", normalize_ws: true
+    refute_link "Clear"
+  end
+
+  test "search clear out input manually" do
+    return if javascript_disabled?
+
+    visit notes_url
+
+    Note.rebuild_full_text_search
+
+    query = notes(:one).content
+    fill_in "Notes search", with: query
+
+    assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+
+    fill_in "Notes search", with: ""
+
+    skip "No new text to wait on, and we get here before the link redirect finishes"
+
+    assert_field :q, with: ""
+    assert_current_path notes_url
     refute_text "Showing", normalize_ws: true
     refute_link "Clear"
   end
