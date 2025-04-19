@@ -74,6 +74,27 @@ class NotesTest < ApplicationSystemTestCase
     assert_field :q, with: query
   end
 
+  test "search ignores non-ASCII" do
+    note = Note.create! user: User.last, content: "José"
+
+    visit notes_url
+
+    assert_field :q, placeholder: "Search your notes"
+
+    Note.rebuild_full_text_search
+
+    query = "jose"
+    fill_in "Notes search", with: query
+    click_button "Search"
+
+    assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+
+    assert_text note.content
+  end
+
   test "create a note" do
     visit notes_url
 
