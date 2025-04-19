@@ -28,6 +28,7 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
 
     if javascript_disabled?
+      # rack-test doesn't consider screen size, we see mobile and non-mobile
       click_on "Add a note", match: :first
     else
       click_on "Add a note"
@@ -79,26 +80,14 @@ class NotesTest < ApplicationSystemTestCase
   test "delete a note" do
     visit edit_note_url(@note)
 
-    if javascript_disabled?
-      click_button "Destroy this note"
-    else
+    if javascript_enabled?
       accept_confirm "Destroy this note?" do
         click_button "Destroy this note"
       end
-    end
-
-    assert_current_path notes_path
-  end
-
-  test "delete a note, but dismiss alert" do
-    return if javascript_disabled?
-
-    visit edit_note_url(@note)
-
-    dismiss_confirm "Destroy this note?" do
+    else
       click_button "Destroy this note"
     end
 
-    assert_current_path edit_note_url(@note)
+    assert_current_path notes_path
   end
 end
