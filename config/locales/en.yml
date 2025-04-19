@@ -42,6 +42,7 @@ en:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note
       edited_at: Edited %{time}
+      submit: Update Note
     create:
       success: Note was successfully created.
     update:

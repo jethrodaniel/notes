@@ -27,4 +27,12 @@
       },
       class: "p-4 w-full h-full rounded-b-lg" %>
   </div>
+
+  <div class="hide-if-js-enabled">
+    <div class="w-full flex justify-center pt-4">
+      <%= button_tag type: :submit, class: "bg-white p-2 m-2 border border-slate-400 shadow rounded-full flex items-center justify-center w-1/2 hover:bg-slate-100 focus:bg-slate-100" do %>
+        <%= t("notes.edit.submit") %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

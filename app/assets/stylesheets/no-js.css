@@ -1,0 +1,11 @@
+@media (scripting: disabled), (scripting: initial-only) {
+  .hide-if-js-enabled {
+    display: block;
+  }
+}
+
+@media (scripting: enabled) {
+  .hide-if-js-enabled {
+    display: none;
+  }
+}

@@ -26,13 +26,18 @@ class NotesTest < ApplicationSystemTestCase
 
   test "create a note" do
     visit notes_url
-    click_on "Add a note"
+
+    if javascript_disabled?
+      click_on "Add a note", match: :first
+    else
+      click_on "Add a note"
+    end
 
     assert_current_path edit_note_path(Note.last)
 
     fill_in "Content", with: "hello!"
 
-    assert_text "Edited just now"
+    assert_text "Edited just now" unless javascript_disabled?
   end
 
   test "view a note" do
@@ -40,6 +45,7 @@ class NotesTest < ApplicationSystemTestCase
 
     assert_field "Content", text: @note.content
     assert_text "Edited #{@note.updated_at}"
+    assert_button "Update Note" if javascript_disabled?
   end
 
   test "update page has a back button" do
@@ -58,12 +64,35 @@ class NotesTest < ApplicationSystemTestCase
     assert_field "Content", text: @note.content
     assert_text "Edited #{@note.updated_at}"
 
-    fill_in "Content", with: @note.content
+    fill_in "Content", with: "note is now updated"
 
-    assert_text "Edited just now"
+    if javascript_enabled?
+      assert_text "Edited just now"
+    else
+      click_on "Update Note"
+
+      assert_current_path notes_path
+      assert_text "note is now updated"
+    end
+  end
+
+  test "delete a note" do
+    visit edit_note_url(@note)
+
+    if javascript_disabled?
+      click_button "Destroy this note"
+    else
+      accept_confirm "Destroy this note?" do
+        click_button "Destroy this note"
+      end
+    end
+
+    assert_current_path notes_path
   end
 
   test "delete a note, but dismiss alert" do
+    return if javascript_disabled?
+
     visit edit_note_url(@note)
 
     dismiss_confirm "Destroy this note?" do
@@ -71,15 +100,5 @@ class NotesTest < ApplicationSystemTestCase
     end
 
     assert_current_path edit_note_url(@note)
-  end
-
-  test "delete a note" do
-    visit edit_note_url(@note)
-
-    accept_confirm "Destroy this note?" do
-      click_button "Destroy this note"
-    end
-
-    assert_current_path notes_path
   end
 end
