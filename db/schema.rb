@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_07_025132) do
+ActiveRecord::Schema[8.0].define(version: 2025_04_19_072506) do
   create_table "notes", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
     t.text "content", null: false
     t.string "user_id", null: false
@@ -39,4 +39,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_07_025132) do
 
   add_foreign_key "notes", "users"
   add_foreign_key "sessions", "users"
+
+  # Virtual tables defined in this database.
+  # Note that virtual tables may not work with other database engines. Be careful if changing database.
+  create_virtual_table "notes_full_text_search", "fts5", ["note_id", "title", "content"]
 end

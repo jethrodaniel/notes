@@ -37,7 +37,9 @@ en:
   notes:
     index:
       add_a_note: Add a note
-      search_placeholder: Search your notes
+      query: Notes search
+      query_placeholder: Search your notes
+      search: Search
     edit:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note

@@ -2,7 +2,13 @@ class NotesController < ApplicationController
   before_action :set_note, only: %i[show edit update destroy]
 
   def index
-    @notes = Note.order(created_at: :desc)
+    query = params[:q]
+
+    @notes = if query.present?
+      Note.full_text_search(query)
+    else
+      Note.order(created_at: :desc)
+    end
   end
 
   def show

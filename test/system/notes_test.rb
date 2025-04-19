@@ -17,11 +17,19 @@ class NotesTest < ApplicationSystemTestCase
   test "search notes" do
     visit notes_url
 
-    assert_field placeholder: "Search your notes"
+    assert_field :q, placeholder: "Search your notes"
+    assert_text notes(:one).content
+    assert_text notes(:two).content
 
-    fill_in "Search your notes", with: "TODO"
+    Note.rebuild_full_text_search
 
-    skip :TODO
+    fill_in "Notes search", with: notes(:one).content
+    click_button "Search"
+
+    assert_current_path notes_url(q: notes(:one).content)
+    assert_field :q, with: notes(:one).content
+    assert_text notes(:one).content
+    refute_text notes(:two).content
   end
 
   test "create a note" do
