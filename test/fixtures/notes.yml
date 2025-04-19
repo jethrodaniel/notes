@@ -6,5 +6,5 @@ one:
   user: one
 
 two:
-  content: Note two doesn't have a title
+  content: Note two has no title
   user: one

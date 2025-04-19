@@ -9,7 +9,10 @@ class Note < ApplicationRecord
 
   scope :full_text_search, -> query do
     joins("JOIN notes_full_text_search fts ON fts.note_id = notes.id")
-      .where("notes_full_text_search MATCH ?", query + "*")
+      .where(
+        "notes_full_text_search MATCH :query",
+        query: sanitize_sql_like(query.gsub(/\W/, " ")) + "*"
+      )
       .order("bm25(notes_full_text_search)")
   end
 

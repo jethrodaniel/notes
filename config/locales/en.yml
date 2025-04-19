@@ -40,6 +40,10 @@ en:
       query: Notes search
       query_placeholder: Search your notes
       search: Search
+      clear: Clear
+      search_results_html:
+        one: Showing %{count} result for <em>%{query}</em>.
+        other: Showing %{count} results for <em>%{query}</em>.
     edit:
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note

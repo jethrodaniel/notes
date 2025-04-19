@@ -14,7 +14,7 @@ class NotesTest < ApplicationSystemTestCase
     assert_text notes(:two).content
   end
 
-  test "search notes" do
+  test "search notes" do # rubocop:disable Minitest/MultipleAssertions
     visit notes_url
 
     assert_field :q, placeholder: "Search your notes"
@@ -23,13 +23,55 @@ class NotesTest < ApplicationSystemTestCase
 
     Note.rebuild_full_text_search
 
-    fill_in "Notes search", with: notes(:one).content
+    query = notes(:one).content
+    fill_in "Notes search", with: query
     click_button "Search"
 
-    assert_current_path notes_url(q: notes(:one).content)
-    assert_field :q, with: notes(:one).content
+    assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
     assert_text notes(:one).content
     refute_text notes(:two).content
+
+    query = notes(:two).content
+    fill_in "Notes search", with: notes(:two).content
+    click_button "Search"
+
+    assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+    refute_text notes(:one).content
+    assert_text notes(:two).content
+
+    query = notes(:one).content[0]
+    fill_in "Notes search", with: notes(:one).content[0]
+    click_button "Search"
+
+    assert_text "Showing 2 results for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
+    assert_text notes(:one).content
+    assert_text notes(:two).content
+  end
+
+  test "search sanitizes input" do
+    visit notes_url
+
+    assert_field :q, placeholder: "Search your notes"
+
+    Note.rebuild_full_text_search
+
+    query = "Robert');DROP TABLE students; --" # https://xkcd.com/327/
+    fill_in "Notes search", with: query
+    click_button "Search"
+
+    assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
+    assert_link "Clear", href: notes_path
+    assert_current_path notes_url(q: query)
+    assert_field :q, with: query
   end
 
   test "create a note" do

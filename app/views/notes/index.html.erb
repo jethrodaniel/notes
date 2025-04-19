@@ -27,6 +27,18 @@
       </div>
     </nav>
 
+    <% if query = params[:q] %>
+      <div class="w-full flex justify-center md:justify-start gap-2">
+        <div class="">
+          <%= t(".search_results_html", query: query, count: @notes.count) %>
+        </div>
+
+        <%= link_to notes_path, class: "underline hover:bg-slate-100" do %>
+          <%= t(".clear") %>
+        <% end %>
+      </div>
+    <% end %>
+
     <div class="flex-1 grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
       <% @notes.each do |note| %>
         <%= render note %>
@@ -34,9 +46,9 @@
     </div>
   </div>
 
-    <%= link_to new_note_path,
-      class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] p-2 border border-slate-400 bg-slate-100 shadow rounded-lg size-16 z-10" do %>
-      <%= image_tag "plus.svg", class: "w-6" %>
-      <div class="sr-only"><%= t(".add_a_note") %></div>
-    <% end %>
+  <%= link_to new_note_path,
+    class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] p-2 border border-slate-400 bg-slate-100 shadow rounded-lg size-16 z-10" do %>
+    <%= image_tag "plus.svg", class: "w-6" %>
+    <div class="sr-only"><%= t(".add_a_note") %></div>
+  <% end %>
 </div>
