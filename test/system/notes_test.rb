@@ -36,7 +36,7 @@ class NotesTest < ApplicationSystemTestCase
     visit notes_url
 
     if javascript_disabled?
-      # rack-test doesn't consider screen size, we see mobile and non-mobile
+      # rack-test doesn't consider screen - we see mobile and non-mobile buttons
       click_on "Add a note", match: :first
     else
       click_on "Add a note"
