@@ -1,6 +1,6 @@
 <% content_for :title, "Editing note" %>
 
-<div data-controller="autosave" class="flex flex-col md:w-5/6 lg:w-2/3 w-full h-full p-2 gap-4">
+<div class="flex flex-col md:w-5/6 lg:w-2/3 w-full h-full p-2 gap-4">
   <nav class="flex w-full justify-between">
     <%= link_to notes_path,
       class: "p-2 rounded-lg hover:bg-slate-100 focus:bg-slate-100" do %>
@@ -31,35 +31,6 @@
   </nav>
 
   <div class="flex-1 w-full">
-    <%= form_with model: @note,
-      data: { autosave_target: "form" },
-      class: "flex flex-col h-full" do |form| %>
-      <div class="flex flex-col rounded-lg border border-slate-400 shadow w-full min-h-1/2">
-        <% if @note.errors.any? %>
-          <div style="color: red">
-            <h2><%= pluralize(@note.errors.count, "error") %> prohibited this note from being saved:</h2>
-            <ul>
-              <% @note.errors.each do |error| %>
-                <li><%= error.full_message %></li>
-              <% end %>
-            </ul>
-          </div>
-        <% end %>
-
-        <%= form.text_field :title,
-          data: { action: "input->autosave#submit:prevent" },
-          placeholder: "Title",
-          class: "pt-4 pl-4 pb-2 rounded-t-lg text-xl" %>
-
-        <%= form.label :content, class: "sr-only" %>
-        <%= form.textarea :content,
-          placeholder: "Content",
-          data: {
-            controller: "textarea", textarea_target: "textarea",
-            action: "input->autosave#submit:prevent"
-          },
-          class: "p-4 w-full h-full rounded-b-lg" %>
-      </div>
-    <% end %>
+    <%= render "form", note: @note %>
   </div>
 </div>
