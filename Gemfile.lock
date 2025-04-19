@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/jethrodaniel/rubocop-lazy-config.git
-  revision: 969485fa1e1651f9272920a05353c90b0634dba1
+  revision: 418ab66e71939620ab155211cb85c0013fd5e187
   specs:
     rubocop-lazy-config (0.0.2)
       rubocop-capybara (>= 2.22)

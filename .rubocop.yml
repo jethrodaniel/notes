@@ -11,3 +11,6 @@ Layout/LineLength:
 
 Minitest/MultipleAssertions:
   Max: 10
+
+Lint/AssignmentInCondition:
+  Enabled: false
