@@ -15,8 +15,10 @@ class Note < ApplicationRecord
 
   def self.rebuild_full_text_search
     find_each do |note|
-      note.remove_from_full_text_search
-      note.add_to_full_text_search
+      transaction do
+        note.remove_from_full_text_search
+        note.add_to_full_text_search
+      end
     end
   end
 
