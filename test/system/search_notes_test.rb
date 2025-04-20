@@ -2,9 +2,9 @@ require "application_system_test_case"
 
 class SearchNotesTest < ApplicationSystemTestCase
   setup do
-    @note = notes(:one)
+    Note.rebuild_full_text_search
 
-    login_as @note.user
+    login_as notes(:one).user
   end
 
   test "search notes" do # rubocop:disable Minitest/MultipleAssertions
@@ -14,11 +14,9 @@ class SearchNotesTest < ApplicationSystemTestCase
     assert_text notes(:one).content
     assert_text notes(:two).content
 
-    Note.rebuild_full_text_search
-
     query = notes(:one).content
     fill_in "Notes search", with: query
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -29,7 +27,7 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     query = notes(:two).content
     fill_in "Notes search", with: notes(:two).content
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -40,7 +38,7 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     query = notes(:one).content[0]
     fill_in "Notes search", with: notes(:one).content[0]
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 2 results for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -55,11 +53,9 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     assert_field :q, placeholder: "Search your notes"
 
-    Note.rebuild_full_text_search
-
     query = "Robert');DROP TABLE students; --" # https://xkcd.com/327/
     fill_in "Notes search", with: query
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -74,11 +70,9 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     assert_field :q, placeholder: "Search your notes"
 
-    Note.rebuild_full_text_search
-
     query = "jose"
     fill_in "Notes search", with: query
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -94,11 +88,9 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     assert_field :q, placeholder: "Search your notes"
 
-    Note.rebuild_full_text_search
-
     query = "jose"
     fill_in "Notes search", with: query
-    click_button "Search"
+    click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
@@ -107,26 +99,8 @@ class SearchNotesTest < ApplicationSystemTestCase
     refute_text note.content
   end
 
-  test "search auto-submits" do
-    return if javascript_disabled?
-
-    visit notes_url
-
-    Note.rebuild_full_text_search
-
-    query = "missing"
-    fill_in "Notes search", with: query
-
-    assert_text "Showing 0 results for #{query}. Clear", normalize_ws: true
-    assert_link "Clear", href: notes_path
-    assert_current_path notes_url(q: query)
-    assert_field :q, with: query
-  end
-
   test "search clear link" do
     visit notes_url
-
-    Note.rebuild_full_text_search
 
     query = notes(:one).content
     fill_in "Notes search", with: query
@@ -150,8 +124,6 @@ class SearchNotesTest < ApplicationSystemTestCase
     return if javascript_disabled?
 
     visit notes_url
-
-    Note.rebuild_full_text_search
 
     query = notes(:one).content
     fill_in "Notes search", with: query
