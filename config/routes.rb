@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
 
-  resources :notes
+  resources :notes, except: %i[new]
 
   root "notes#index"
 end

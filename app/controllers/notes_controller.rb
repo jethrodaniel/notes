@@ -16,18 +16,6 @@ class NotesController < ApplicationController
   def show
   end
 
-  def new
-    @note = Note.new(content: "", user: Current.user)
-
-    respond_to do |format|
-      if @note.save
-        format.html { redirect_to edit_note_path(@note) }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
-
   def edit
   end
 
@@ -36,7 +24,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to notes_path, notice: t(".success") }
+        format.html { redirect_to edit_note_path(@note), notice: t(".success") }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
