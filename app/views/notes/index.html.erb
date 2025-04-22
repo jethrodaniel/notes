@@ -8,7 +8,10 @@
     <nav class="flex justify-center md:justify-start w-full">
       <%= form_with url: notes_path,
         method: :get,
-        data: { controller: "auto-submit" },
+        data: {
+          controller: "auto-submit",
+          auto_submit_delay_value: 300
+        },
         class: "w-full md:w-1/2 flex flex-col" do |form| %>
         <div class="flex items-center border border-slate-400 shadow rounded-lg">
           <%= form.label :q, t(".query"), class: "sr-only" %>
