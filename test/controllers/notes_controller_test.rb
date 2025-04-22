@@ -14,15 +14,6 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "new creates a new blank note" do
-    assert_requires_login { get new_note_url }
-
-    login_as users(:one)
-    get new_note_url
-
-    assert_redirected_to edit_note_path(Note.last)
-  end
-
   test "create note" do
     assert_requires_login { post notes_url }
 
@@ -35,7 +26,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
       }
     end
 
-    assert_redirected_to notes_url
+    assert_redirected_to edit_note_path(Note.last)
   end
 
   test "get edit" do
