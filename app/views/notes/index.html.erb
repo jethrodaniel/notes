@@ -56,9 +56,7 @@
     <% end %>
 
     <div class="flex-1 grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
-      <% @notes.each do |note| %>
-        <%= render note %>
-      <% end %>
+      <%= render partial: "notes/note", collection: @notes, cached: true %>
     </div>
   </div>
 
