@@ -5,13 +5,22 @@ import { Controller } from "@hotwired/stimulus"
 // Our search input uses data-turbo-permanent to retain focus while updating.
 //
 // This means clearing the input (e.g, GET /notes) doesn't clear the current
-// input value, since the input isn't replaced by Turbo.
+// input value, since it isn't replaced by Turbo.
 //
-// To fix this, we manually clear the input when we click the "Clear" button.
+// To fix this, we manually clear the input when we click the "Clear" button,
+// then submit the form, and then finally re-focus the input.
 //
 export default class extends Controller {
-  static targets = ["input"]
+  static targets = ["input", "form"]
 
-  // Calling :prevent in the data-action seems to be all we need here
-  click(_event) {}
+  click(event) {
+    event.preventDefault()
+    event.stopPropagation()
+
+    this.formTarget.reset()
+
+    this.formTarget.requestSubmit()
+
+    this.inputTarget.focus()
+  }
 }

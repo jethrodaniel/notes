@@ -113,7 +113,7 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     click_on "Clear"
 
-    assert_current_path notes_url
+    assert_current_path notes_url(q: "")
     assert_field :q, placeholder: "Search your notes"
 
     refute_text "Showing", normalize_ws: true

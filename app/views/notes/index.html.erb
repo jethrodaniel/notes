@@ -10,7 +10,8 @@
         method: :get,
         data: {
           controller: "auto-submit",
-          auto_submit_delay_value: 300
+          auto_submit_delay_value: 300,
+          notes_search_target: "form"
         },
         class: "w-full md:w-1/2 flex flex-col" do |form| %>
         <div class="flex items-center border border-slate-400 shadow rounded-lg">
@@ -48,7 +49,7 @@
         </div>
 
         <%= link_to notes_path,
-          data: { action: "notes-search#click:stop" },
+          data: { action: "notes-search#click" },
           class: "underline hover:bg-slate-100" do %>
           <%= t(".clear") %>
         <% end %>
