@@ -18,20 +18,51 @@ Rails 8 with Hotwire, Stimulus, Tailwind, and SQLite.
 
 ## Deployment
 
-Copy the sample config, and fill in your information:
+The app is deployed with [kamal](https://kamal-deploy.org/).
+
+One-time setup:
+
+1) Copy the sample config, and fill in your information:
 
 ```
 cp .env.example .env
 ```
 
-Then deploy with [kamal](https://kamal-deploy.org/):
+2) Vendor basecamp/kamal-proxy, and configure deployments to use that
+
+We use our own private image, instead of basecamp/kamal-proxy, otherwise we
+hit docker.com rate-limiting:
+
+> Unable to find image 'basecamp/kamal-proxy:v0.8.7' locally
+> docker: Error response from daemon: toomanyrequests: You have reached your unauthenticated pull rate limit. https://www.docker.com/increase-rate-limit.
+
+To vendor the image:
 
 ```
-# first-time
-bundle exec dotenv bin/kamal deploy
+docker pull basecamp/kamal-proxy:v0.8.4
 
-# everytime afterwards
-bundle exec dotenv bin/kamal redeploy
+docker login <REGISTRY>
+
+docker tag basecamp/kamal-proxy:v0.8.4 <REGISTRY>/<USER>/kamal-proxy:v0.8.4
+docker push <REGISTRY>/<USER>/kamal-proxy:v0.8.4
+```
+
+To configure the server to use that image:
+
+```
+bin/dotenv kamal proxy boot_config set --registry=<REGISTRY> --image-version=v0.8.7 --repository=<USER>
+```
+
+3) Install everything on the server
+
+```
+bin/dotenv kamal deploy
+```
+
+Afterwards, regular deployments just need this:
+
+```
+bin/dotenv kamal redeploy
 ```
 
 ## Development

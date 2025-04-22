@@ -19,7 +19,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 gem "bootsnap", require: false
-gem "kamal", require: false
+gem "kamal", require: false, github: "basecamp/kamal"
 gem "thruster", require: false
 
 gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"

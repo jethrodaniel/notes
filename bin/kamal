@@ -24,14 +24,4 @@ end
 require "rubygems"
 require "bundler/setup"
 
-
-#-- PATCH: https://github.com/basecamp/kamal/pull/1202#issuecomment-2504832117
-require "kamal"
-class Kamal::Configuration
-  def proxy_image
-    ENV.fetch("KAMAL_PROXY_IMAGE")
-  end
-end
-#--
-
 load Gem.bin_path("kamal", "kamal")
