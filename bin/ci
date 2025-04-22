@@ -2,5 +2,6 @@
 
 set -ex
 
+bundle exec rubocop
 BROWSER=rack-test bin/rails test:all
 BROWSER=chrome bin/rails test:system
