@@ -135,7 +135,9 @@ class SearchNotesTest < ApplicationSystemTestCase
 
     fill_in "Notes search", with: ""
 
-    skip "No new text to wait on, and we get here before the link redirect finishes"
+    skip <<~MSG
+      No new text to wait on, so we get here before the link redirect finishes
+    MSG
 
     assert_field :q, with: ""
     assert_current_path notes_url
