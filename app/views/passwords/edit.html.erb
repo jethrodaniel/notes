@@ -15,7 +15,7 @@
     autocomplete: "new-password",
     placeholder: t(".password_placeholder"),
     maxlength: 72,
-    class: "w-full border border-slate-400 shadow rounded-lg p-2"
+    class: "w-full border border-slate-400 dark:border-slate-600 shadow rounded-lg p-2"
   %>
 
   <%= form.label :password_confirmation, t(".password_confirmation_label"), class: "w-full" %>
@@ -24,10 +24,10 @@
     autocomplete: "new-password",
     placeholder: t(".password_confirmation_placeholder"),
     maxlength: 72,
-    class: "w-full border border-slate-400 shadow rounded-lg p-2"
+    class: "w-full border border-slate-400 dark:border-slate-600 shadow rounded-lg p-2"
   %>
 
   <%= form.submit t(".save"),
-    class: "w-full border border-slate-400 shadow rounded-full mt-6 p-1"
+    class: "w-full border border-slate-400 dark:border-slate-600 hover:bg-slate-200 hover:bg-slate-800 shadow rounded-full mt-6 p-1"
   %>
 <% end %>

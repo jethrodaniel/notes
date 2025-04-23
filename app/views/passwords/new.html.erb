@@ -15,11 +15,11 @@
     autocomplete: "username",
     placeholder: t(".email_address_placeholder"),
     value: params[:email_address],
-    class: "w-full border border-slate-400 shadow rounded-lg p-2"
+    class: "w-full border border-slate-400 dark:border-slate-600 shadow rounded-lg p-2"
   %>
 
   <%= form.submit t(".email_reset_instructions"),
-    class: "w-full border border-slate-400 shadow rounded-full mt-6 p-1"
+    class: "w-full border border-slate-400 dark:border-slate-600 hover:bg-slate-200 dark:hover:bg-slate-800 shadow rounded-full mt-6 p-1"
   %>
 
   <%= link_to t(".sign_in_instead"), new_session_path, class: "underline" %>
