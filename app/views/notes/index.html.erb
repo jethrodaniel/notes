@@ -10,8 +10,7 @@
         method: :get,
         data: {
           controller: "auto-submit",
-          auto_submit_delay_value: 300,
-          notes_search_target: "form"
+          auto_submit_delay_value: 300
         },
         class: "w-full md:w-1/2 flex flex-col" do |form| %>
         <div class="h-full flex items-center border border-slate-400 dark:border-slate-600 shadow rounded-lg">
@@ -23,8 +22,7 @@
               value: params[:q],
               data: {
                 action: "input->auto-submit#submit",
-                turbo_permanent: true,
-                notes_search_target: "input"
+                turbo_permanent: true
               }
           %>
         <%= button_tag type: :submit,
@@ -51,7 +49,7 @@
         </div>
 
         <%= link_to notes_path,
-          data: { action: "notes-search#click" },
+          data: { turbo: false },
           class: "underline" do %>
           <%= t(".clear") %>
         <% end %>
