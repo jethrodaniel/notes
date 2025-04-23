@@ -34,8 +34,8 @@ class PwaControllerTest < ActionDispatch::IntegrationTest
       display: "standalone",
       scope: "/",
       description: "Notes is a note-taking application",
-      theme_color: "white",
-      background_color: "white"
+      theme_color: "purple",
+      background_color: "purple"
     }
 
     assert_response :success
