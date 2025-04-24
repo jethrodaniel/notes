@@ -20,6 +20,7 @@
               class: "w-full h-full rounded-l-lg p-2 hover:bg-slate-200 dark:hover:bg-slate-800",
               placeholder: t(".query_placeholder"),
               value: params[:q],
+              required: true,
               data: {
                 action: "input->auto-submit#submit",
                 turbo_permanent: true
