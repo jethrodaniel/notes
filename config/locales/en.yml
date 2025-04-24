@@ -37,6 +37,7 @@ en:
   notes:
     index:
       title: Notes
+      settings: Settings
       add_a_note: Add a note
       query: Notes search
       query_placeholder: Search your notes
@@ -58,3 +59,8 @@ en:
       edited_just_now: Edited just now
     destroy:
       success: Note was successfully destroyed.
+  settings:
+    index:
+      title: Settings
+      confirm_signout: Sign out?
+      signout_button: Sign out

@@ -35,11 +35,18 @@
         </div>
       <% end %>
 
-      <div class="hidden md:flex flex-1 justify-end">
+      <div class="flex md:flex-1 justify-end gap-4 items-center">
         <%= button_to t(".add_a_note"),
           notes_path,
           params: { note: { title: "", content: "" } },
-          class: "py-2 px-4 border border-slate-400 dark:border-slate-600 shadow rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800" %>
+          class: "hidden md:flex py-2 px-4 border border-slate-400 dark:border-slate-600 shadow rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800" %>
+
+        <%= link_to settings_path,
+          class: "min-w-12 p-2 border border-slate-400 dark:border-slate-600 shadow rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800" do %>
+            <%= image_tag "cog-6-tooth.svg", class: "md:hidden h-full w-full dark:invert" %>
+            <div class="hidden md:block"><%= t(".settings") %></div>
+            <div class="sr-only"><%= t(".settings") %></div>
+        <% end %>
       </div>
     </nav>
 
