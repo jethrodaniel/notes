@@ -36,6 +36,7 @@ en:
       failure: Passwords did not match.
   notes:
     index:
+      title: Notes
       add_a_note: Add a note
       query: Notes search
       query_placeholder: Search your notes
@@ -45,6 +46,7 @@ en:
         one: Showing %{count} result for <em>%{query}</em>.
         other: Showing %{count} results for <em>%{query}</em>.
     edit:
+      title: Editing note
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note
       edited_at: Edited %{time}

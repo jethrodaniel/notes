@@ -10,6 +10,7 @@ class NotesTest < ApplicationSystemTestCase
   test "view notes" do
     visit notes_url
 
+    assert_title "Notes"
     assert_text notes(:one).content
     assert_text notes(:two).content
   end
@@ -34,6 +35,7 @@ class NotesTest < ApplicationSystemTestCase
   test "view a note" do
     visit edit_note_url(@note)
 
+    assert_title "Editing note"
     assert_field "Content", text: @note.content
     assert_text "Edited #{@note.updated_at}"
     assert_button "Update Note" if javascript_disabled?
