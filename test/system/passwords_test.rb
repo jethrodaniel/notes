@@ -25,7 +25,7 @@ class PasswordsTest < ApplicationSystemTestCase
   end
 
   test "reset password from email link page" do
-    visit edit_password_path(users(:one).password_reset_token)
+    visit edit_password_url(users(:one).password_reset_token)
 
     assert_title "Update your password"
     assert_selector "h1", text: "Update your password"
@@ -39,7 +39,7 @@ class PasswordsTest < ApplicationSystemTestCase
   end
 
   test "reset password from email link with matching passwords" do
-    visit edit_password_path(users(:one).password_reset_token)
+    visit edit_password_url(users(:one).password_reset_token)
 
     fill_in "Password", with: "new password"
     fill_in "Password confirmation", with: "new password"
@@ -52,13 +52,13 @@ class PasswordsTest < ApplicationSystemTestCase
   test "reset password from email link without matching passwords" do
     freeze_time
 
-    visit edit_password_path(users(:one).password_reset_token)
+    visit edit_password_url(users(:one).password_reset_token)
 
     fill_in "Password", with: "new password"
     fill_in "Password confirmation", with: "old password"
     click_button "Save"
 
     assert_text "Passwords did not match."
-    assert_current_path edit_password_path(users(:one).password_reset_token)
+    assert_current_path edit_password_url(users(:one).password_reset_token)
   end
 end

@@ -6,7 +6,7 @@ class SettingsTest < ApplicationSystemTestCase
   end
 
   test "sign out" do
-    visit settings_path
+    visit settings_url
 
     assert_title "Settings"
     assert_text "Settings"

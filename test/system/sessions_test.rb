@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class SessionsTest < ApplicationSystemTestCase
   test "sign in page" do
-    visit new_session_path
+    visit new_session_url
 
     assert_title "Sign in"
     assert_selector "h1", text: "Notes"
@@ -18,7 +18,7 @@ class SessionsTest < ApplicationSystemTestCase
   end
 
   test "sign in page with invalid credentials" do
-    visit new_session_path
+    visit new_session_url
 
     assert_title "Sign in"
     fill_in "Email address", with: users(:one).email_address
@@ -30,7 +30,7 @@ class SessionsTest < ApplicationSystemTestCase
   end
 
   test "sign in page with valid credentials" do
-    visit new_session_path
+    visit new_session_url
 
     assert_title "Sign in"
     fill_in "Email address", with: users(:one).email_address
