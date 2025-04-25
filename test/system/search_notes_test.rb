@@ -36,8 +36,8 @@ class SearchNotesTest < ApplicationSystemTestCase
     refute_text notes(:one).content
     assert_text notes(:two).content
 
-    query = notes(:one).content[0]
-    fill_in "Notes search", with: notes(:one).content[0]
+    query = "note"
+    fill_in "Notes search", with: query
     click_button "Search" unless javascript_enabled?
 
     assert_text "Showing 2 results for #{query}. Clear", normalize_ws: true
