@@ -4,6 +4,7 @@ set -ex
 
 # lint
 bundle exec rubocop
+bundle exec brakeman --confidence-level 1 -q
 bundle exec i18n-tasks health
 
 # test
