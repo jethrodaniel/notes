@@ -1,6 +1,15 @@
 inherit_gem:
   rubocop-lazy-config: rubocop.yml
 
+inherit_mode:
+  merge:
+    - Exclude
+
+AllCops:
+  Exclude:
+    # https://github.com/glebm/i18n-tasks#installation
+    - test/i18n_test.rb
+
 # @user = User.find_by_password_reset_token!(params[:token])
 Rails/DynamicFindBy:
   Enabled: false

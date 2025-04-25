@@ -1,66 +1,67 @@
+---
 en:
-  shared:
-    rate_limit_try_again_later: Try again later.
-    back_button: Back
-    application_title: Notes
-  sessions:
-    new:
-      sign_in: Sign in
-      email_address_label: Email address
-      email_address_placeholder: Enter your email address
-      password_label: Password
-      password_placeholder: Enter your password
-      forgot_your_password: Forgot your password?
-    create:
-      failure: Try another email address or password.
-  passwords:
-    mailer_subject: Reset your password
-    invalid_reset_link: Password reset link is invalid or has expired.
-    new:
-      forgot_your_password: Forgot your password?
-      email_address_placeholder: Enter your email address
-      email_address_label: Email address
-      email_reset_instructions: Email reset instructions
-      sign_in_instead: Sign in instead
-    edit:
-      update_your_password: Update your password
-      password_label: Password
-      password_placeholder: Enter new password
-      password_confirmation_label: Password confirmation
-      password_confirmation_placeholder: Repeat new password
-      save: Save
-    create:
-      success: Password reset instructions sent if that user exists.
-    update:
-      success: Password has been reset.
-      failure: Passwords did not match.
   notes:
-    index:
-      title: Notes
-      settings: Settings
-      add_a_note: Add a note
-      query: Notes search
-      query_placeholder: Search your notes
-      search: Search
-      clear: Clear
-      search_results_html:
-        one: Showing %{count} result for <em>%{query}</em>.
-        other: Showing %{count} results for <em>%{query}</em>.
+    create:
+      success: Note was successfully created.
+    destroy:
+      success: Note was successfully destroyed.
     edit:
-      title: Editing note
       confirm_destroy: Destroy this note?
       destroy_button: Destroy this note
       edited_at: Edited %{time}
       submit: Update Note
-    create:
-      success: Note was successfully created.
+      title: Editing note
+    index:
+      add_a_note: Add a note
+      clear: Clear
+      query: Notes search
+      query_placeholder: Search your notes
+      search: Search
+      search_results_html:
+        one: Showing %{count} result for <em>%{query}</em>.
+        other: Showing %{count} results for <em>%{query}</em>.
+      settings: Settings
+      title: Notes
     update:
-      success: Note was successfully updated.
       edited_just_now: Edited just now
-    destroy:
-      success: Note was successfully destroyed.
+      success: Note was successfully updated.
+  passwords:
+    create:
+      success: Password reset instructions sent if that user exists.
+    edit:
+      password_confirmation_label: Password confirmation
+      password_confirmation_placeholder: Repeat new password
+      password_label: Password
+      password_placeholder: Enter new password
+      save: Save
+      update_your_password: Update your password
+    invalid_reset_link: Password reset link is invalid or has expired.
+    mailer_subject: Reset your password
+    new:
+      email_address_label: Email address
+      email_address_placeholder: Enter your email address
+      email_reset_instructions: Email reset instructions
+      forgot_your_password: Forgot your password?
+      sign_in_instead: Sign in instead
+    update:
+      failure: Passwords did not match.
+      success: Password has been reset.
+  sessions:
+    create:
+      failure: Try another email address or password.
+    new:
+      email_address_label: Email address
+      email_address_placeholder: Enter your email address
+      forgot_your_password: Forgot your password?
+      password_label: Password
+      password_placeholder: Enter your password
+      sign_in: Sign in
   settings:
     index:
-      title: Settings
       confirm_signout: Sign out?
       signout_button: Sign out
+      title: Settings
+  shared:
+    application_title: Notes
+    back_button: Back
+    rate_limit_try_again_later: Try again later.

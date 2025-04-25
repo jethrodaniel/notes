@@ -2,6 +2,10 @@
 
 set -ex
 
+# lint
 bundle exec rubocop
+bundle exec i18n-tasks health
+
+# test
 BROWSER=rack-test bin/rails test:all
 BROWSER=chrome bin/rails test:system
