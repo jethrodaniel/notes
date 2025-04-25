@@ -11,12 +11,17 @@ class Note < ApplicationRecord
   after_update_commit :update_full_text_search
 
   scope :full_text_search, -> query do
+    search_table = reflect_on_association(:full_text_search_query).klass.arel_table
+
+    match = Arel::Nodes::InfixOperation.new(
+      "MATCH",
+      search_table[:content],
+      Arel::Nodes.build_quoted(query.gsub(/\W/, " ") + "*")
+    )
+
     joins(:full_text_search_query)
-      .where(
-        "#{NoteQuery.table_name}.content MATCH :query",
-        query: query.gsub(/\W/, " ") + "*"
-      )
-      .order("bm25(#{NoteQuery.table_name})")
+      .where(match)
+      .order("bm25(#{search_table.name})")
   end
 
   def self.rebuild_full_text_search
