@@ -36,7 +36,7 @@ end
 group :development do
   gem "web-console"
   gem "faker"
-  gem "i18n-tasks", "~> 1.0.15", require: false
+  gem "i18n-tasks", require: false
 end
 
 group :test do
