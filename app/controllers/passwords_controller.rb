@@ -1,6 +1,9 @@
 class PasswordsController < ApplicationController
   allow_unauthenticated_access
   before_action :set_user_by_token, only: %i[edit update]
+  rate_limit to: 5, within: 10.minutes, only: %i[create update], with: -> do
+    redirect_to new_session_url, alert: t("shared.rate_limit_try_again_later")
+  end
 
   def new
   end
