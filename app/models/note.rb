@@ -38,10 +38,14 @@ class Note < ApplicationRecord
   end
 
   def add_to_full_text_search
-    self.full_text_search_query = NoteQuery.new(title:, content:)
+    self.full_text_search_query ||= NoteQuery.new(title:, content:)
   end
 
   def update_full_text_search
-    full_text_search_query.update(title:, content:)
+    if full_text_search_query.present?
+      full_text_search_query.update(title:, content:)
+    else
+      add_to_full_text_search
+    end
   end
 end
