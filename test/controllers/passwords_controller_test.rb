@@ -41,7 +41,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_session_url
 
     assert_equal(
-      "Password reset instructions sent if that user exists.",
+      "Password reset instructions sent.",
       flash[:notice]
     )
   end
@@ -52,7 +52,7 @@ class PasswordsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_redirected_to new_session_url
     assert_equal(
-      "Password reset instructions sent if that user exists.",
+      "Password reset instructions sent.",
       flash[:notice]
     )
   end

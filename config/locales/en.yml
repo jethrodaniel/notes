@@ -27,7 +27,7 @@ en:
       success: Note was successfully updated.
   passwords:
     create:
-      success: Password reset instructions sent if that user exists.
+      success: Password reset instructions sent.
     edit:
       password_confirmation_label: Password confirmation
       password_confirmation_placeholder: Repeat new password

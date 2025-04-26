@@ -20,7 +20,7 @@ class PasswordsTest < ApplicationSystemTestCase
     fill_in "Email address", with: "test@email.com"
     click_button "Email reset instructions"
 
-    assert_text "Password reset instructions sent if that user exists."
+    assert_text "Password reset instructions sent."
     assert_current_path new_session_path
   end
 
