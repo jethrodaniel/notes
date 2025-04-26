@@ -25,6 +25,9 @@ en:
     update:
       edited_just_now: Edited just now
       success: Note was successfully updated.
+  passwords_mailer:
+    reset:
+      message: You can reset your password within the next 15 minutes on <a href="%{link}">this password reset page</a>.
   passwords:
     create:
       success: Password reset instructions sent.
