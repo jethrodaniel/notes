@@ -38,11 +38,18 @@ class NoteTest < ActiveSupport::TestCase
   end
 
   test "full_text_search sanitizes input" do
-    Note.delete_all
+    Note.rebuild_full_text_search
 
-    # assert_equal "", Note.full_text_search("Robert');DROP TABLE students; --").to_sql
+    [
+      # https://xkcd.com/327/
+      "Robert');DROP TABLE students; --",
 
-     # https://xkcd.com/327/
-    assert_equal [], Note.full_text_search("Robert');DROP TABLE students; --").to_a
+      # only non-words
+      "'",
+      "'--",
+      " "
+    ].each do |query|
+      assert_empty Note.full_text_search(query).to_a, "search for '#{query}'"
+    end
   end
 end
