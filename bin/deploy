@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+exec bin/dotenv kamal redeploy
