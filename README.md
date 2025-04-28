@@ -1,6 +1,10 @@
-# README
+# notes
 
 A simple note-taking app.
+
+## Tech stack
+
+Rails with Hotwire, Stimulus, Tailwind, and SQLite.
 
 ## Install
 
@@ -11,10 +15,6 @@ A simple note-taking app.
 - Run `bin/setup` (only needed once)
 - Run `bin/dev`
 - Visit `http://localhost:3000` in your browser
-
-## Tech stack
-
-Rails 8 with Hotwire, Stimulus, Tailwind, and SQLite.
 
 ## Deployment
 
