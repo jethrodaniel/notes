@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+
+set -ex
+
+# tell kamal to use our kamal-proxy image
+bin/dotenv kamal proxy boot_config set \
+  --registry="$KAMAL_REGISTRY_SERVER" \
+  --image-version=v0.8.7 \
+  --repository="$KAMAL_REGISTRY_USERNAME"

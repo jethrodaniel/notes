@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+set -ex
+
+bin/dotenv bin/tell_kamal_to_use_our_proxy_image
+bin/dotenv bin/kamal deploy
