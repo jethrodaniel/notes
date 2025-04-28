@@ -8,7 +8,7 @@ Rails with Hotwire, Stimulus, Importmaps, Tailwind, and SQLite.
 
 ## Getting started
 
-```
+```sh
 # clone the repo
 git clone https://github.com/jethrodaniel/notes
 cd notes
@@ -32,13 +32,13 @@ password: password
 
 ## Testing
 
-```
+```sh
 bin/ci
 ```
 
 You may also need to install dependencies for system tests:
 
-```
+```sh
 snap install chromium # e.g, on ubuntu 24.04
 ```
 
@@ -55,7 +55,7 @@ You can deploy with [kamal](https://kamal-deploy.org/) like so:
 
 To vendor your own `kamal-proxy`:
 
-```
+```sh
 docker pull basecamp/kamal-proxy:v0.8.4
 docker login <REGISTRY> # e.g, `registry.gitlab.com`
 docker tag basecamp/kamal-proxy:v0.8.4 <REGISTRY>/<USER>/kamal-proxy:v0.8.4
