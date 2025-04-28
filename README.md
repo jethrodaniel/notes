@@ -4,17 +4,31 @@ A simple note-taking web app.
 
 ## Tech stack
 
-Rails with Hotwire, Stimulus, Tailwind, and SQLite.
+Rails with Hotwire, Stimulus, Importmaps, Tailwind, and SQLite.
 
-## Install
+## Getting started
 
-- Prerequisites:
-  - Ruby 3.4.x (https://www.ruby-lang.org/en/documentation/installation/)
-  - Bundler (`gem install bundler`)
-- Clone the repository (`git clone xxx`)
-- Run `bin/setup` (only needed once)
-- Run `bin/dev`
-- Visit `http://localhost:3000` in your browser
+```
+# clone the repo
+git clone https://github.com/jethrodaniel/notes
+cd notes
+
+# setup the app
+bundle
+bin/setup
+
+# run it locally
+bin/dev
+```
+
+Then visit http://localhost:3000 in your browser.
+
+You can sign in with the default credentials (see `db/seeds.rb` for details):
+
+```
+email: admin@example.com
+password: password
+```
 
 ## Deployment
 
