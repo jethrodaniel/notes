@@ -48,7 +48,7 @@ en:
       success: Password has been reset.
   passwords_mailer:
     reset:
-      message: You can reset your password within the next 15 minutes on <a href="%{link}">this password reset page</a>.
+      reset_password_html: You can reset your password within the next 15 minutes on <a href="%{link}">this password reset page</a>.
   sessions:
     create:
       failure: Try another email address or password.

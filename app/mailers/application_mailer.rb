@@ -1,6 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default(
-    from: Rails.application.credentials.dig(:smtp, :from) || "notes@notes.app"
-  )
+  default from: Rails.env.test? \
+    ? "notes@notes.app"
+    : Rails.application.credentials.dig(:smtp, :from)
   layout "mailer"
 end

@@ -18,6 +18,6 @@ class PasswordsMailerTest < ActionMailer::TestCase
 
     assert_includes email.html_part.to_s,
       "You can reset your password within the next 15 minutes on " \
-      "&lt;a href=&quot;#{link}&quot;&gt;this password reset page&lt;/a&gt;."
+      "<a href=\"#{link}\">this password reset page</a>."
   end
 end
