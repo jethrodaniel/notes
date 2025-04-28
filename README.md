@@ -65,3 +65,9 @@ docker push <REGISTRY>/<USER>/kamal-proxy:v0.8.4
 ## Contributing
 
 You don't, this isn't open-source (yet).
+
+## License
+
+Again, this isn't open-source (yet).
+
+Copyright 2025 Mark Delk. All rights reserved.
