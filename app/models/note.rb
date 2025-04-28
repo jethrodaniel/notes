@@ -3,6 +3,8 @@ class Note < ApplicationRecord
 
   belongs_to :user
 
+  # TODO: extract full-text search to a concern eventually
+
   has_one :full_text_search_query,
     class_name: "NoteQuery",
     dependent: :destroy
