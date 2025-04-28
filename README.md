@@ -1,6 +1,6 @@
 # notes
 
-A simple note-taking app.
+A simple note-taking web app.
 
 ## Tech stack
 
@@ -41,6 +41,7 @@ To vendor the image:
 ```
 docker pull basecamp/kamal-proxy:v0.8.4
 
+# e.g, `registry.gitlab.com`
 docker login <REGISTRY>
 
 docker tag basecamp/kamal-proxy:v0.8.4 <REGISTRY>/<USER>/kamal-proxy:v0.8.4
