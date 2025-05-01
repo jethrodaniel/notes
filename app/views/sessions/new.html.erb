@@ -15,18 +15,18 @@
     autocomplete: "username",
     placeholder: t(".email_address_placeholder"),
     value: params[:email_address],
-    class: "w-full border border-gray-400 dark:border-gray-600 shadow rounded-lg p-2"
+    class: "w-full border border-zinc-400 dark:border-zinc-600 shadow rounded-lg p-2"
   %>
   <%= form.label :password, t(".password_label"), class: "w-full" %>
   <%= form.password_field :password,
     required: true,
     autocomplete: "current-password",
     placeholder: t(".password_placeholder"),
-    class: "w-full border border-gray-400 dark:border-gray-600 shadow rounded-lg p-2"
+    class: "w-full border border-zinc-400 dark:border-zinc-600 shadow rounded-lg p-2"
   %>
 
   <%= form.submit t(".sign_in"),
-    class: "w-full border border-gray-400 dark:border-gray-600 hover:bg-gray-200 dark:hover:bg-gray-800 shadow rounded-full mt-6 p-1"
+    class: "w-full border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow rounded-full mt-6 p-1"
   %>
 
   <%= link_to t(".forgot_your_password"), new_password_path, class: "underline" %>
