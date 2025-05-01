@@ -1,4 +1,4 @@
-<article class="relative w-full h-full flex flex-col gap-2 justify-center rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
+<article id="<%= dom_id note %>" class="relative w-full h-full flex flex-col gap-2 justify-center rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
   <% if note.title.present? %>
     <%= link_to edit_note_path(note),
       id: dom_id(note),

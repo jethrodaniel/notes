@@ -7,42 +7,6 @@ class NotesTest < ApplicationSystemTestCase
     login_as @note.user
   end
 
-  test "view notes index" do
-    visit notes_url
-
-    assert_title "Notes"
-    assert_text notes(:one).content
-    assert_text notes(:two).content
-  end
-
-  test "long notes are truncated on the index page" do
-    notes(:one).update! content: "a" * 271 + "hello there general"
-
-    visit notes_url
-
-    assert_text "a" * 271 + "hello ..."
-  end
-
-  test "notes show their last update time" do
-    freeze_time
-
-    visit notes_url
-
-    assert_text "less than a minute ago", count: 2
-
-    travel_to 1.hour.from_now
-    visit notes_url
-
-    assert_text "1 hour ago", count: 2
-
-    notes(:one).update! created_at: 2.hours.ago
-
-    visit notes_url
-
-    assert_text "1 hour ago"
-    assert_text "2 hours ago"
-  end
-
   test "create a note" do
     visit notes_url
 

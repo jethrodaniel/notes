@@ -9,7 +9,7 @@ class NotesController < ApplicationController
     @notes = if query.present?
       user_notes.full_text_search(query)
     else
-      user_notes.order(created_at: :desc)
+      user_notes.order(updated_at: :desc)
     end
   end
 
