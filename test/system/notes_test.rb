@@ -23,6 +23,26 @@ class NotesTest < ApplicationSystemTestCase
     assert_text "a" * 271 + "hello ..."
   end
 
+  test "notes show their last update time" do
+    freeze_time
+
+    visit notes_url
+
+    assert_text "less than a minute ago", count: 2
+
+    travel_to 1.hour.from_now
+    visit notes_url
+
+    assert_text "1 hour ago", count: 2
+
+    notes(:one).update! created_at: 2.hours.ago
+
+    visit notes_url
+
+    assert_text "1 hour ago"
+    assert_text "2 hours ago"
+  end
+
   test "create a note" do
     visit notes_url
 

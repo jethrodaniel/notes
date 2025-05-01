@@ -1,5 +1,4 @@
 <article class="relative w-full h-full flex flex-col gap-2 justify-center rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
-
   <% if note.title.present? %>
     <%= link_to edit_note_path(note),
       id: dom_id(note),
@@ -16,4 +15,10 @@
       <p class="w-full h-full whitespace-pre-line"><%= truncate note.content, length: 280 %></p>
     <% end %>
   <% end %>
+
+  <div class="flex w-full justify-center pb-2">
+    <small class="font-thin text-xs">
+      <%= t("notes.index.time_ago", time_ago_in_words: time_ago_in_words(note.created_at, format: :short)) %>
+    </small>
+  </div>
 </article>

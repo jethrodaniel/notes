@@ -21,6 +21,7 @@ en:
         one: Showing %{count} result for <em>%{query}</em>.
         other: Showing %{count} results for <em>%{query}</em>.
       settings: Settings
+      time_ago: "%{time_ago_in_words} ago"
       title: Notes
     update:
       edited_just_now: Edited just now
