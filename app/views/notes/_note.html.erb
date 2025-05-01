@@ -8,12 +8,12 @@
       <%= note.title %>
     <% end %>
 
-    <p class=" p-4 w-full h-full whitespace-pre-line"><%= note.content %></p>
+    <p class="p-4 w-full h-full whitespace-pre-line"><%= truncate note.content, length: 280 %></p>
   <% else %>
     <%= link_to edit_note_path(note),
       id: dom_id(note),
       class: "flex-1 p-4 rounded-lg" do %>
-      <p class=" w-full h-full whitespace-pre-line"><%= note.content %></p>
+      <p class="w-full h-full whitespace-pre-line"><%= truncate note.content, length: 280 %></p>
     <% end %>
   <% end %>
 </article>

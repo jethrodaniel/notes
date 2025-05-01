@@ -7,12 +7,20 @@ class NotesTest < ApplicationSystemTestCase
     login_as @note.user
   end
 
-  test "view notes" do
+  test "view notes index" do
     visit notes_url
 
     assert_title "Notes"
     assert_text notes(:one).content
     assert_text notes(:two).content
+  end
+
+  test "long notes are truncated on the index page" do
+    notes(:one).update! content: "a" * 271 + "hello there general"
+
+    visit notes_url
+
+    assert_text "a" * 271 + "hello ..."
   end
 
   test "create a note" do
