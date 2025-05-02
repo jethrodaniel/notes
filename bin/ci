@@ -9,4 +9,5 @@ bundle exec i18n-tasks health
 
 # test
 BROWSER=rack-test bin/rails test:all
+BROWSER=firefox bin/rails test:system
 BROWSER=chrome bin/rails test:system
