@@ -5,11 +5,19 @@ user = User.create!(
   password: "password"
 )
 
-quote = Faker::Quote.unique
+generators = [
+  -> { Faker::Quotes::Shakespeare.hamlet_quote + "\n\n- Hamlet" },
+  -> { Faker::Quote.mitch_hedberg + "\n\n- Mitch Hedberg" },
+  -> { Faker::Quote.matz + "\n\n- Matz" },
+  -> { Faker::Books::Dune.quote + "\n\n- Dune" },
+  -> { Faker::JapaneseMedia::CowboyBebop.quote + "\n\n- Cowboy Bebop" }
+]
 
-loop do
-  content = quote.mitch_hedberg
-  Note.create!(user:, content:)
-rescue Faker::UniqueGenerator::RetryLimitExceeded
-  break
+attrs = 1_000.times.flat_map { generators.map(&:call) }.shuffle.map do |content|
+  {
+    content:,
+    user_id: user.id
+  }
 end
+
+Note.insert_all(attrs)
