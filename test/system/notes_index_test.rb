@@ -26,18 +26,18 @@ class NotesIndexTest < ApplicationSystemTestCase
   test "notes show their last update time" do
     freeze_time
     notes(:two).touch # rubocop:disable Rails/SkipsModelValidations
-    travel_to 1.hour.from_now
+    travel_to (1.hour + 5.minutes).from_now
     notes(:one).touch # rubocop:disable Rails/SkipsModelValidations
 
     visit notes_url
 
     assert_selector "article",
       id: "note_#{notes(:one).id}",
-      text: "less than a minute ago"
+      text: "Edited less than a minute ago"
 
     assert_selector "article",
       id: "note_#{notes(:two).id}",
-      text: "1 hour ago"
+      text: "Edited about 1 hour ago"
   end
 
   test "notes are ordered by their modification time (most recent first)" do

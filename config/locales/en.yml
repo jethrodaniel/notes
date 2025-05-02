@@ -14,6 +14,7 @@ en:
     index:
       add_a_note: Add a note
       clear: Clear
+      edited_time_ago: Edited %{time_ago} ago
       query: Notes search
       query_placeholder: Search your notes
       search: Search
@@ -21,7 +22,6 @@ en:
         one: Showing %{count} result for <em>%{query}</em>.
         other: Showing %{count} results for <em>%{query}</em>.
       settings: Settings
-      time_ago: "%{time_ago_in_words} ago"
       title: Notes
     update:
       edited_just_now: Edited just now
