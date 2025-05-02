@@ -7,7 +7,8 @@ class Note < ApplicationRecord
 
   has_one :full_text_search_query,
     class_name: "NoteQuery",
-    dependent: :destroy
+    inverse_of: :note,
+    dependent: :delete
 
   after_create_commit :add_to_full_text_search
   after_update_commit :update_full_text_search
@@ -32,15 +33,22 @@ class Note < ApplicationRecord
   end
 
   def self.rebuild_full_text_search
+    search_klass = reflect_on_association(
+      :full_text_search_query
+    ).klass
+    search_klass.delete_all
+
     find_each do |note|
-      transaction do
-        note.add_to_full_text_search
-      end
+      note.add_to_full_text_search
     end
   end
 
   def add_to_full_text_search
-    self.full_text_search_query ||= NoteQuery.new(title:, content:)
+    search_klass = self.class.reflect_on_association(
+      :full_text_search_query
+    ).klass
+
+    self.full_text_search_query = search_klass.new(title:, content:)
   end
 
   def update_full_text_search

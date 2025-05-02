@@ -10,7 +10,7 @@ class NoteTest < ActiveSupport::TestCase
   end
 
   test "full_text_search" do
-    Note.destroy_all
+    Note.delete_all
 
     one_two = Note.create!(content: "one two", user: users(:one))
     two_three = Note.create!(content: "two three", user: users(:two))
@@ -38,8 +38,6 @@ class NoteTest < ActiveSupport::TestCase
   end
 
   test "full_text_search sanitizes input" do
-    Note.rebuild_full_text_search
-
     [
       # https://xkcd.com/327/
       "Robert');DROP TABLE students; --",
@@ -51,5 +49,55 @@ class NoteTest < ActiveSupport::TestCase
     ].each do |query|
       assert_empty Note.full_text_search(query).to_a, "search for '#{query}'"
     end
+  end
+
+  test "adding a note adds to the full text search" do
+    assert_empty Note.full_text_search("foo")
+
+    Note.create!(content: "foo", user: users(:one))
+
+    assert_equal(
+      ["foo"],
+      Note.full_text_search("foo").map(&:content),
+      "search for 'foo'"
+    )
+  end
+
+  test "updating a note updates the full text search" do
+    assert_empty Note.full_text_search("foo")
+
+    note = Note.create!(content: "foo", user: users(:one))
+    note.update! content: "bar"
+
+    assert_equal(
+      ["bar"],
+      Note.full_text_search("bar").map(&:content),
+      "search for 'bar'"
+    )
+    assert_empty Note.full_text_search("foo")
+  end
+
+  test "deleting a note deletes from the full text search" do
+    assert_empty Note.full_text_search("foo")
+
+    note = Note.create!(content: "foo", user: users(:one))
+
+    assert_equal(
+      ["foo"],
+      Note.full_text_search("foo").map(&:content),
+      "search for 'foo'"
+    )
+
+    note.destroy!
+
+    assert_empty Note.full_text_search("foo")
+  end
+
+  test "rebuild full text search" do
+    assert_empty Note.full_text_search("one")
+
+    Note.rebuild_full_text_search
+
+    assert_not_empty Note.full_text_search("one")
   end
 end
