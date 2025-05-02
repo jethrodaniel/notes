@@ -5,19 +5,19 @@ user = User.create!(
   password: "password"
 )
 
-generators = [
-  -> { Faker::Quotes::Shakespeare.hamlet_quote + "\n\n- Hamlet" },
-  -> { Faker::Quote.mitch_hedberg + "\n\n- Mitch Hedberg" },
-  -> { Faker::Quote.matz + "\n\n- Matz" },
-  -> { Faker::Books::Dune.quote + "\n\n- Dune" },
-  -> { Faker::JapaneseMedia::CowboyBebop.quote + "\n\n- Cowboy Bebop" }
-]
-
-attrs = 1_000.times.flat_map { generators.map(&:call) }.shuffle.map do |content|
-  {
-    content:,
-    user_id: user.id
-  }
-end
+attrs = {
+  "Mitch Hedberg" => Faker::Quote.fetch_all("quote.mitch_hedberg"),
+  "Matz" => Faker::Quote.fetch_all("quote.matz"),
+  "Cowboy Bebop" => Faker::JapaneseMedia::CowboyBebop.fetch_all("cowboy_bebop.quote")
+}.flat_map do |author, quotes|
+  quotes.map do |quote|
+    {
+      title: author,
+      content: quote,
+      user_id: user.id
+    }
+  end
+end.shuffle
 
 Note.insert_all(attrs)
+Note.rebuild_full_text_search
