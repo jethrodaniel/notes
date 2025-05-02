@@ -62,12 +62,14 @@ docker tag basecamp/kamal-proxy:v0.8.4 <REGISTRY>/<USER>/kamal-proxy:v0.8.4
 docker push <REGISTRY>/<USER>/kamal-proxy:v0.8.4
 ```
 
-## Contributing
-
-You don't, this isn't open-source (yet).
-
 ## License
 
-Again, this isn't open-source (yet).
+This code is released under the [GNU Affero General Public License Version 3 (AGPLv3) or any later version](https://spdx.org/licenses/AGPL-3.0-or-later.html).
 
 Copyright 2025 Mark Delk. All rights reserved.
+
+## Contributing
+
+While the code is released under the AGPL, I'd still like to be able to release it under something like the [MIT license](https://spdx.org/licenses/MIT.html) eventually.
+
+To that end, contributions aren't accepted (yet).
