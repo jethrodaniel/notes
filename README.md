@@ -64,7 +64,7 @@ docker push <REGISTRY>/<USER>/kamal-proxy:v0.8.4
 
 ## License
 
-This code is released under the [GNU Affero General Public License Version 3 (AGPLv3) or any later version](https://spdx.org/licenses/AGPL-3.0-or-later.html).
+Notes is released under the [GNU Affero General Public License Version 3 (AGPLv3) or any later version](https://spdx.org/licenses/AGPL-3.0-or-later.html).
 
 Copyright 2025 Mark Delk. All rights reserved.
 
