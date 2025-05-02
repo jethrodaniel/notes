@@ -21,10 +21,9 @@ class Note < ApplicationRecord
     sanitized_query = query.gsub(/\W/, " ")
     return none if sanitized_query.blank?
 
-    # TODO: search against `title` as well
     match = Arel::Nodes::InfixOperation.new(
       "MATCH",
-      search_table[:content],
+      search_table,
       Arel::Nodes.build_quoted(sanitized_query + "*")
     )
 

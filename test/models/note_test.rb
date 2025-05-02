@@ -12,9 +12,11 @@ class NoteTest < ActiveSupport::TestCase
   test "full_text_search" do
     Note.delete_all
 
-    one_two = Note.create!(content: "one two", user: users(:one))
+    user = users(:one)
+    one_two = Note.create!(content: "one two", user:)
     two_three = Note.create!(content: "two three", user: users(:two))
-    four = Note.create!(content: "four", user: users(:one))
+    four = Note.create!(content: "four zero", user:)
+    four_five = Note.create!(title: "five zero", content: "four", user:)
 
     assert_kind_of ActiveRecord::Relation, Note.full_text_search("a")
 
@@ -23,7 +25,7 @@ class NoteTest < ActiveSupport::TestCase
       "one" => [one_two],
       "two" => [one_two, two_three],
       "three" => [two_three],
-      "four" => [four],
+      "four" => [four, four_five],
 
       # https://sqlite.org/fts5.html#fts5_phrases
       "t*" => [two_three, one_two],
@@ -32,9 +34,21 @@ class NoteTest < ActiveSupport::TestCase
       assert_equal(
         notes.map(&:content),
         Note.full_text_search(query).map(&:content),
-        "search for '#{query}'"
+        "search for content '#{query}'"
       )
     end
+
+    assert_equal(
+      [four_five].map(&:title),
+      Note.full_text_search("five").map(&:title),
+      "search for title 'five'"
+    )
+
+    assert_equal(
+      [four, four_five],
+      Note.full_text_search("zero"),
+      "search for title or content 'zero'"
+    )
   end
 
   test "full_text_search sanitizes input" do
