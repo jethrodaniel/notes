@@ -13,7 +13,8 @@
 
     <div class="flex justify-end">
       <small class="font-thin text-xs">
-        <%= t("notes.index.time_ago", time_ago_in_words: time_ago_in_words(note.updated_at, format: :short)) %>
+        <%= t("notes.index.edited_time_ago",
+          time_ago: time_ago_in_words(note.updated_at, format: :short)) %>
       </small>
     </div>
   <% end %>
