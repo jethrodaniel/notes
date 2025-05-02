@@ -77,8 +77,9 @@
 
   <%= button_to notes_path,
     params: { note: { title: "", content: "" } },
-    form_class: "flex items-center justify-center md:hidden sticky bottom-4 ml-2/3 ml-[calc(100vw-6rem)] p-2 border border-zinc-400 bg-zinc-50 dark:bg-zinc-900 shadow rounded-lg size-16 z-1" do %>
+    class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-8rem)] p-4 mb-8 border border-zinc-400 bg-zinc-50 dark:bg-zinc-900 shadow rounded-lg size-16 z-10" do %>
     <%= image_tag "plus.svg", class: "w-6 dark:invert" %>
     <div class="sr-only"><%= t(".add_a_note") %></div>
+    <span class="absolute inset-0 z-10"></span>
   <% end %>
 </div>
