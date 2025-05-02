@@ -120,27 +120,29 @@ class SearchNotesTest < ApplicationSystemTestCase
     refute_link "Clear"
   end
 
-  test "search clear out input manually" do
-    return if javascript_disabled?
-
+  test "clear out search input manually" do
     visit notes_url
 
     query = notes(:one).content
     fill_in "Notes search", with: query
+    click_button "Search" if javascript_disabled?
 
     assert_text "Showing 1 result for #{query}. Clear", normalize_ws: true
     assert_link "Clear", href: notes_path
     assert_current_path notes_url(q: query)
     assert_field :q, with: query
 
+    # NOTE: if we just blank out the input, then the search doesn't submit.
+    # Not sure why, but filling in anything else avoids the issue.
+    #
+    # TODO: understand
+    #
+    fill_in "Notes search", with: "1"
     fill_in "Notes search", with: ""
+    click_button "Search" if javascript_disabled?
 
-    skip <<~MSG
-      No new text to wait on, so we get here before the link redirect finishes
-    MSG
-
+    assert_current_path notes_url(q: "")
     assert_field :q, with: ""
-    assert_current_path notes_url
     refute_text "Showing", normalize_ws: true
     refute_link "Clear"
   end
