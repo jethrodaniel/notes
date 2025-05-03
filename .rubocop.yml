@@ -19,7 +19,7 @@ Layout/LineLength:
   Max: 80
 
 Minitest/MultipleAssertions:
-  Max: 10
+  Max: 12
 
 Lint/AssignmentInCondition:
   Enabled: false

@@ -63,4 +63,52 @@ class NotesIndexTest < ApplicationSystemTestCase
     assert_selector "ol>li:nth-child(2)", text: notes(:one).content
     assert_selector "ol>li>article", id: "note_#{notes(:one).id}"
   end
+
+  def pagination_setup!
+    attrs = Array.new(20 * 2 + 5) do
+      {user_id: @note.user.id, content: "pagination"}
+    end
+    Note.delete_all
+    Note.insert_all(attrs) # rubocop:disable Rails/SkipsModelValidations
+  end
+
+  test "pagination without javascript" do
+    return unless javascript_disabled?
+
+    pagination_setup!
+
+    visit notes_url
+
+    assert_selector "ol>li"
+    assert_selector "li>article", count: 20
+    assert_link "Load more", href: notes_path(page: 2)
+
+    click_on "Load more"
+
+    assert_current_path notes_path(page: 2)
+
+    assert_selector "ol>li"
+    assert_selector "li>article", count: 20
+    assert_link "Load more", href: notes_path(page: 3)
+
+    click_on "Load more"
+
+    assert_current_path notes_path(page: 3)
+
+    assert_selector "ol>li"
+    assert_selector "li>article", count: 5
+    refute_text "Load more"
+  end
+
+  test "pagination with javascript (infinite scroll)" do
+    return unless javascript_enabled?
+
+    pagination_setup!
+
+    visit notes_url
+
+    assert_selector "ol>li"
+    assert_selector "li>article", minimum: 20, maximum: 45
+    assert_selector "li>article", minimum: 40, maximum: 45
+  end
 end

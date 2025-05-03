@@ -1,0 +1,7 @@
+<%= turbo_stream.append dom_id(Note, :index) do %>
+  <%= render @notes %>
+<% end %>
+
+<%= turbo_stream.replace :next_page do %>
+  <%= render "notes/pagination", pagy: @pagy %>
+<% end %>

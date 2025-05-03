@@ -15,6 +15,7 @@ en:
       add_a_note: Add a note
       clear: Clear
       edited_time_ago: Edited %{time_ago} ago
+      load_more: Load more
       query: Notes search
       query_placeholder: Search your notes
       search: Search

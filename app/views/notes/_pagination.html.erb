@@ -1,0 +1,11 @@
+<% if pagy.next.present? %>
+  <%= turbo_frame_tag :next_page,
+    src: notes_path(page: pagy.next, format: :turbo_stream),
+    loading: :lazy do %>
+
+    <%= link_to notes_path(page: pagy.next),
+      class: "underline p-4" do %>
+      <%= t("notes.index.load_more") %>
+    <% end %>
+  <% end %>
+<% end %>

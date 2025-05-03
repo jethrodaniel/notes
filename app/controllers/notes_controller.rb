@@ -6,10 +6,17 @@ class NotesController < ApplicationController
 
     user_notes = Note.where(user: Current.user)
 
-    @notes = if query.present?
+    notes = if query.present?
       user_notes.full_text_search(query)
     else
       user_notes.order(updated_at: :desc)
+    end
+
+    @pagy, @notes = pagy(notes)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream if request_from_notes_index?
     end
   end
 
@@ -60,5 +67,10 @@ class NotesController < ApplicationController
 
   def note_params
     params.expect(note: [:title, :content]).merge(user: Current.user)
+  end
+
+  def request_from_notes_index?
+    path = Rails.application.routes.recognize_path(request.referer)
+    path.slice(:controller, :action) == {controller: "notes", action: "index"}
   end
 end

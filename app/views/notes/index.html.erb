@@ -64,14 +64,12 @@
     <% end %>
 
     <div class="flex-1 p-1">
-      <ol class="grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
-        <% @notes.each do |note| %>
-          <li class="">
-            <%= render note %>
-          </li>
-        <% end %>
+     <ol id="<%= dom_id(Note, :index) %>" class="grid auto-rows-min grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 w-full gap-2">
+       <%= render @notes %>
       </ol>
     </div>
+
+    <%= render "notes/pagination", pagy: @pagy %>
   </div>
 
   <%= button_to notes_path,

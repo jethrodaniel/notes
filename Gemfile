@@ -24,6 +24,7 @@ gem "kamal", require: false, github: "basecamp/kamal"
 gem "thruster", require: false
 
 gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"
+gem "pagy"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"

@@ -1,21 +1,23 @@
-<article id="<%= dom_id note %>" class="rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
-  <%= link_to edit_note_path(note),
-    id: dom_id(note),
-    class: "p-4 flex flex-col gap-2 rounded-lg" do %>
+<li>
+  <article id="<%= dom_id note %>" class="rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
+    <%= link_to edit_note_path(note),
+      id: dom_id(note),
+      class: "p-4 flex flex-col gap-2 rounded-lg" do %>
 
-    <div class="text-lg">
-      <%= note.title %>
-    </div>
+      <div class="text-lg">
+        <%= note.title %>
+      </div>
 
-    <div class="flex-1">
-      <p class="w-full h-full whitespace-pre-line"><%= truncate note.content, length: 280 %></p>
-    </div>
+      <div class="flex-1">
+        <p class="w-full h-full whitespace-pre-line"><%= truncate note.content, length: 280 %></p>
+      </div>
 
-    <div class="flex justify-end">
-      <small class="font-thin text-xs">
-        <%= t("notes.index.edited_time_ago",
-          time_ago: time_ago_in_words(note.updated_at, format: :short)) %>
-      </small>
-    </div>
-  <% end %>
-</article>
+      <div class="flex justify-end">
+        <small class="font-thin text-xs">
+          <%= t("notes.index.edited_time_ago",
+            time_ago: time_ago_in_words(note.updated_at, format: :short)) %>
+        </small>
+      </div>
+    <% end %>
+  </article>
+</li>
