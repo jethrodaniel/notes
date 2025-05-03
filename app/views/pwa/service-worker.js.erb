@@ -61,9 +61,7 @@ const cacheOnly = async (request) => {
   return response
 }
 
-const networkFirst = async (event) => {
-  const request = event.request
-
+const networkFirst = async (event, request) => {
   const url = new URL(request.url)
   const isGetRequest = request.method === "GET"
   const isLocal = url.origin === location.origin
@@ -131,7 +129,7 @@ const fetchHandler = async (event) => {
     return cacheOnly(request)
   }
 
-  return networkFirst(event)
+  return networkFirst(event, request)
 }
 
 //-- register handlers
