@@ -30,6 +30,16 @@ email: admin@example.com
 password: password
 ```
 
+## Logo
+
+To generate the `public/favicon.ico`:
+
+```
+inkscape app/assets/images/icon.svg --export-width=256 --export-filename=tmp.png
+convert tmp.png -define icon:auto-resize=256,64,48,32,16 public/favicon.ico
+rm tmp.png
+```
+
 ## Testing
 
 ```sh
