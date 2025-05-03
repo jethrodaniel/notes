@@ -1,0 +1,144 @@
+// https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
+
+const CACHE_KEY = "<%= SecureRandom.uuid %>"
+const STATIC_FILES = [
+  <%=
+    files = Rails.application.assets.load_path.manifest.values.sort
+      .map { |file| "\"#{File.join(Rails.configuration.assets.prefix, file)}\"" }
+      .join(",\n  ")
+
+    raw files
+  %>
+]
+
+//-- install
+
+const addFilesToCache = async (key, files) => {
+  const cache = await caches.open(key)
+  await cache.addAll(files)
+}
+
+const putInCache = async (key, request, response) => {
+  const cache = await caches.open(key)
+  await cache.put(request, response)
+}
+
+//-- activate
+
+const deleteCache = async (key) => {
+  await caches.delete(key)
+}
+
+const deleteOldCaches = async (keyToKeep) => {
+  const keys = await caches.keys()
+  const cachesToDelete = keys.filter((key) => key !== keyToKeep)
+  await Promise.all(cachesToDelete.map(deleteCache))
+}
+
+//-- fetch
+
+const log = (message) => {
+  if (<%= Rails.env.development? %>) {
+    console.log(message)
+  }
+}
+
+const cacheOnly = async (request) => {
+  const cache = await caches.open(CACHE_KEY)
+  const response = await caches.match(request)
+
+  if (!response) {
+    log(`[cacheOnly] error, cache miss`)
+    return Response.error()
+  }
+
+  log(`[cacheOnly] fetched cached response`)
+  return response
+}
+
+const networkFirst = async (event) => {
+  const request = event.request
+
+  const url = new URL(request.url)
+  const isGetRequest = request.method === "GET"
+  const isLocal = url.origin === location.origin
+  const isCacheable = isGetRequest && isLocal
+
+  if (!isCacheable) {
+    log("[networkFirst] request isn't cachable, fetching from network")
+    return fetch(request)
+  }
+
+  try {
+    const networkResponse = await fetch(request)
+
+    if (!networkResponse.ok) {
+      throw new Error(
+        `Failed network request - status=${networkResponse.status}, body=${networkResponse.body}`
+      )
+    }
+
+    event.waitUntil(putInCache(CACHE_KEY, request, networkResponse.clone()))
+
+    log("[networkFirst] cached response, returning network response")
+    return networkResponse
+  } catch (error) {
+    const cacheResponse = await caches.match(request)
+
+    if (cacheResponse) {
+      log(`[networkFirst] response error, returning cached response (error=${error}`)
+      return cacheResponse
+    }
+
+    log(`[networkFirst] response error and cache miss, returning generic error (error=${error}`)
+
+    return new Response(
+      `Network error and cache miss, when fetching ${request.url}`, {
+        status: 408,
+        headers: {"Content-Type": "text/plain"}
+      }
+    )
+  }
+}
+
+//-- handlers
+
+// On install, cache static resources
+const installHandler = async () => {
+  await addFilesToCache(CACHE_KEY, STATIC_FILES)
+}
+
+// On update, delete old cache entries
+const activateHandler = async () => {
+  await deleteOldCaches(CACHE_KEY)
+  await clients.claim()
+}
+
+// On fetch, intercept to support offline usage
+const fetchHandler = async (event) => {
+  const request = event.request
+  const url = new URL(request.url)
+  const isStaticAsset = STATIC_FILES.some((file) => url.pathname == file)
+
+  log(`fetch: method=${request.method}, url=${request.url}`)
+
+  if (isStaticAsset) {
+    return cacheOnly(request)
+  }
+
+  return networkFirst(event)
+}
+
+//-- register handlers
+
+self.addEventListener("install", (event) => {
+  event.waitUntil(installHandler())
+})
+
+self.addEventListener("activate", (event) => {
+  event.waitUntil(activateHandler())
+})
+
+self.addEventListener("fetch", (event) => {
+  event.respondWith(fetchHandler(event))
+})
