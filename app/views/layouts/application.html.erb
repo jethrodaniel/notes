@@ -13,9 +13,9 @@
     <%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <%= favicon_link_tag image_url("favicon.ico") %>
-    <link rel="icon" href="<%= image_url("icon.png") %>" type="image/png">
-    <link rel="icon" href="<%= image_url("icon.svg") %>" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="<%= image_url("icon.png") %>">
+    <%= favicon_link_tag image_url("icon.png"), type: "image/png" %>
+    <%= favicon_link_tag image_url("icon.svg"), type: "image/svg+xml" %>
+    <%= favicon_link_tag image_url("icon.png"), type: "image/png", rel: "apple-touch-icon" %>
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
