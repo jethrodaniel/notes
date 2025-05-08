@@ -1,18 +1,14 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 
 const CACHE_KEY = "<%= SecureRandom.uuid %>"
+
 const STATIC_FILES = [
   <%=
-    digested_assets = Rails.application.assets.load_path.manifest.values.sort
+    assets = Rails.application.assets.load_path.manifest.values.sort
       .map { |file| File.join(Rails.configuration.assets.prefix, file) }
+      .map { |path| "\"#{path}\"" }
 
-    static_assets = [
-      "/favicon.ico"
-    ]
-
-    files = (digested_assets + static_assets).map { |path| "\"#{path}\"" }
-
-    raw files.join(",\n  ")
+    raw assets.join(",\n  ")
   %>
 ]
 

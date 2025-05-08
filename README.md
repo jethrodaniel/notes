@@ -32,11 +32,11 @@ password: password
 
 ## Logo
 
-To generate the `public/favicon.ico`:
+To generate the `favicon.ico`:
 
 ```
 inkscape app/assets/images/icon.svg --export-width=256 --export-filename=tmp.png
-convert tmp.png -define icon:auto-resize=256,64,48,32,16 public/favicon.ico
+convert tmp.png -define icon:auto-resize=256,64,48,32,16 app/assets/images/favicon.ico
 rm tmp.png
 ```
 
