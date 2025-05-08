@@ -1,6 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 
-const VERSION = "v1"
+const VERSION = "v2"
 const CACHE_KEY = `notes-${VERSION}`
 
 const STATIC_FILES = [
@@ -12,6 +12,8 @@ const STATIC_FILES = [
     raw assets.join(",\n  ")
   %>
 ]
+
+const OFFLINE_PAGE = '/offline'
 
 //-- install
 
@@ -87,20 +89,17 @@ const networkFirst = async (event, request) => {
 
     log(`[networkFirst] response error and cache miss, returning generic error (error=${error}`)
 
-    return new Response(
-      `Network error and cache miss, when fetching ${request.url}`, {
-        status: 408,
-        headers: {"Content-Type": "text/plain"}
-      }
-    )
+    const offline = await caches.match(OFFLINE_PAGE)
+
+    return offline
   }
 }
 
 //-- handlers
 
-// On install, cache static resources
+// On install, cache static resources and fallback offline page
 const installHandler = async () => {
-  await addFilesToCache(CACHE_KEY, STATIC_FILES)
+  await addFilesToCache(CACHE_KEY, [...STATIC_FILES, OFFLINE_PAGE])
 }
 
 // On update, delete old cache entries

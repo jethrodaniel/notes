@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get "settings/index"
   get "up" => "rails/health#show", :as => :rails_health_check
 
   get "manifest" => "rails/pwa#manifest", :as => :pwa_manifest
@@ -10,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :notes, except: %i[new]
   resources :settings, only: %i[index]
+
+  get "offline", to: "static_pages#offline", as: :offline
 
   root "notes#index"
 end

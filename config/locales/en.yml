@@ -70,3 +70,8 @@ en:
     application_title: Notes
     back_button: Back
     rate_limit_try_again_later: Try again later.
+  static_pages:
+    offline:
+      header: Looks like you're offline...
+      message: Check your network connection and try again.
+      title: Offline
