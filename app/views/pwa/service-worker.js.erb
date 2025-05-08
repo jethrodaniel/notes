@@ -72,15 +72,10 @@ const networkFirst = async (event, request) => {
   try {
     const networkResponse = await fetch(request)
 
-    if (!networkResponse.ok) {
-      throw new Error(
-        `Failed network request - status=${networkResponse.status}, body=${networkResponse.body}`
-      )
-    }
-
     event.waitUntil(putInCache(CACHE_KEY, request, networkResponse.clone()))
 
     log("[networkFirst] cached response, returning network response")
+
     return networkResponse
   } catch (error) {
     const cacheResponse = await caches.match(request)
