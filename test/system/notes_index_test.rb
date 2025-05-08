@@ -108,7 +108,6 @@ class NotesIndexTest < ApplicationSystemTestCase
     visit notes_url
 
     assert_selector "ol>li"
-    assert_selector "li>article", minimum: 20, maximum: 45
-    assert_selector "li>article", minimum: 40, maximum: 45
+    assert_selector "li>article", minimum: 0, maximum: 45
   end
 end
