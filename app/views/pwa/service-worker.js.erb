@@ -1,6 +1,6 @@
 // https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers
 
-const VERSION = "v2"
+const VERSION = "v4"
 const CACHE_KEY = `notes-${VERSION}`
 
 const STATIC_FILES = [
@@ -41,9 +41,9 @@ const deleteOldCaches = async (keyToKeep) => {
 
 //-- fetch
 
-const log = (message) => {
+const log = (request, message) => {
   if (<%= Rails.env.development? %>) {
-    console.log(message)
+    console.log(`${message}\n\tmethod=${request.method} url=${request.url}`)
   }
 }
 
@@ -52,11 +52,11 @@ const cacheOnly = async (request) => {
   const response = await caches.match(request)
 
   if (!response) {
-    log(`[cacheOnly] error, cache miss`)
+    log(request, `[cacheOnly] error, cache miss`)
     return Response.error()
   }
 
-  log(`[cacheOnly] fetched cached response`)
+  log(request, `[cacheOnly] fetched cached response`)
   return response
 }
 
@@ -67,27 +67,29 @@ const networkFirst = async (event, request) => {
   const isCacheable = isGetRequest && isLocal
 
   if (!isCacheable) {
-    log("[networkFirst] request isn't cachable, fetching from network")
+    log(request, "[networkFirst] request isn't cachable, fetching from network")
     return fetch(request)
   }
 
   try {
     const networkResponse = await fetch(request)
 
-    event.waitUntil(putInCache(CACHE_KEY, request, networkResponse.clone()))
+    if (networkResponse.ok) {
+      event.waitUntil(putInCache(CACHE_KEY, request, networkResponse.clone()))
+    }
 
-    log("[networkFirst] cached response, returning network response")
+    log(request, "[networkFirst] returning network response")
 
     return networkResponse
   } catch (error) {
     const cacheResponse = await caches.match(request)
 
     if (cacheResponse) {
-      log(`[networkFirst] response error, returning cached response (error=${error}`)
+      log(request, `[networkFirst] response error, returning cached response (error=${error}`)
       return cacheResponse
     }
 
-    log(`[networkFirst] response error and cache miss, returning generic error (error=${error}`)
+    log(request, `[networkFirst] response error and cache miss, returning generic error (error=${error}`)
 
     const offline = await caches.match(OFFLINE_PAGE)
 
@@ -113,8 +115,6 @@ const fetchHandler = async (event) => {
   const request = event.request
   const url = new URL(request.url)
   const isStaticAsset = STATIC_FILES.some((file) => url.pathname == file)
-
-  log(`fetch: method=${request.method}, url=${request.url}`)
 
   if (isStaticAsset) {
     return cacheOnly(request)
