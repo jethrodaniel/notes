@@ -19,5 +19,9 @@ attrs = {
   end
 end.shuffle
 
+attrs.each_with_index do |attr, index|
+  attr[:title] = "#{index} #{attr[:title]}"
+end
+
 Note.insert_all(attrs)
 Note.rebuild_full_text_search
