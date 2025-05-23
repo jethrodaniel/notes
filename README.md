@@ -66,10 +66,7 @@ You can deploy with [kamal](https://kamal-deploy.org/) like so:
 To vendor your own `kamal-proxy`:
 
 ```sh
-docker pull basecamp/kamal-proxy:v0.8.4
-docker login <REGISTRY> # e.g, `registry.gitlab.com`
-docker tag basecamp/kamal-proxy:v0.8.4 <REGISTRY>/<USER>/kamal-proxy:v0.8.4
-docker push <REGISTRY>/<USER>/kamal-proxy:v0.8.4
+bin/dotenv bin/update_kamal_proxy
 ```
 
 ## License
