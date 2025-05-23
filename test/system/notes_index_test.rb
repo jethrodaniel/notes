@@ -31,11 +31,11 @@ class NotesIndexTest < ApplicationSystemTestCase
 
     visit notes_url
 
-    assert_selector "article",
+    assert_selector "li",
       id: "note_#{notes(:one).id}",
       text: "Edited less than a minute ago"
 
-    assert_selector "article",
+    assert_selector "li",
       id: "note_#{notes(:two).id}",
       text: "Edited about 1 hour ago"
   end
@@ -47,10 +47,10 @@ class NotesIndexTest < ApplicationSystemTestCase
     visit notes_url
 
     assert_selector "ol>li"
-    assert_selector "ol>li:nth-child(1)", text: notes(:one).content
-    assert_selector "ol>li>article", id: "note_#{notes(:one).id}"
-    assert_selector "ol>li:nth-child(2)", text: notes(:two).content
-    assert_selector "ol>li>article", id: "note_#{notes(:two).id}"
+    assert_selector "ol>li:nth-child(1)",
+      id: "note_#{notes(:one).id}", text: notes(:one).content
+    assert_selector "ol>li:nth-child(2)",
+      id: "note_#{notes(:two).id}", text: notes(:two).content
 
     travel_to 5.minutes.from_now
     notes(:two).touch # rubocop:disable Rails/SkipsModelValidations
@@ -58,10 +58,10 @@ class NotesIndexTest < ApplicationSystemTestCase
     visit notes_url
 
     assert_selector "ol>li"
-    assert_selector "ol>li:nth-child(1)", text: notes(:two).content
-    assert_selector "ol>li>article", id: "note_#{notes(:two).id}"
-    assert_selector "ol>li:nth-child(2)", text: notes(:one).content
-    assert_selector "ol>li>article", id: "note_#{notes(:one).id}"
+    assert_selector "ol>li:nth-child(1)",
+      id: "note_#{notes(:two).id}", text: notes(:two).content
+    assert_selector "ol>li:nth-child(2)",
+      id: "note_#{notes(:one).id}", text: notes(:one).content
   end
 
   def pagination_setup!
