@@ -57,17 +57,10 @@ snap install chromium # e.g, on ubuntu 24.04
 You can deploy with [kamal](https://kamal-deploy.org/) like so:
 
 - provision a server
-- vendor your own `basecamp/kamal-proxy:v0.8.7` image
-- `cp .env.example .env`, and fill out your information
+- `cp .env.example .env`, then fill out your information
+- vendor your own `basecamp/kamal-proxy` image: `bin/dotenv bin/update_kamal_proxy`
 - first time: `bin/deploy_setup`
-  - TODO: fix/clean up this setup step (might not work on a new server atm)
 - subsequent deploys: `bin/deploy`
-
-To vendor your own `kamal-proxy`:
-
-```sh
-bin/dotenv bin/update_kamal_proxy
-```
 
 ## License
 
