@@ -2,7 +2,7 @@
 
 set -ex
 
-VERSION=v0.9.0
+VERSION=v0.9.1
 
 docker pull basecamp/kamal-proxy:$VERSION
 docker login $KAMAL_REGISTRY_SERVER
