@@ -1,0 +1,126 @@
+---
+es:
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: alrededor de %{count} hora
+        other: alrededor de %{count} horas
+      about_x_months:
+        one: alrededor de %{count} mes
+        other: alrededor de %{count} meses
+      about_x_years:
+        one: alrededor de %{count} año
+        other: alrededor de %{count} años
+      almost_x_years:
+        one: casi %{count} año
+        other: casi %{count} años
+      half_a_minute: medio minuto
+      less_than_x_minutes:
+        one: menos de un minuto
+        other: menos de %{count} minutos
+      less_than_x_seconds:
+        one: menos de %{count} segundo
+        other: menos de %{count} segundos
+      over_x_years:
+        one: más de %{count} año
+        other: más de %{count} años
+      x_days:
+        one: "%{count} día"
+        other: "%{count} días"
+      x_minutes:
+        one: "%{count} minuto"
+        other: "%{count} minutos"
+      x_months:
+        one: "%{count} mes"
+        other: "%{count} meses"
+      x_seconds:
+        one: "%{count} segundo"
+        other: "%{count} segundos"
+      x_years:
+        one: "%{count} año"
+        other: "%{count} años"
+  notes:
+    create:
+      success: La nota se ha creado con éxito.
+    destroy:
+      success: La nota se ha destruido con éxito.
+    edit:
+      confirm_destroy: "¿Destruir esta nota?"
+      destroy_button: Destruye esta nota
+      edited_at: Editado %{time}
+      submit: Actualizar nota
+      title: Editar nota
+    form:
+      content: Contenido
+      title: Título
+    index:
+      add_a_note: Añade una nota
+      clear: Despejar
+      edited_time_ago: Editado hace %{time_ago}
+      load_more: Cargar más
+      query: Búsqueda de notas
+      query_placeholder: Busca en tus notas
+      search: Buscar
+      search_results_html:
+        one: Mostrando %{count} resultado para <em>%{query}</em>.
+        other: Mostrando %{count} resultados para <em>%{query}</em>.
+      settings: Configuración
+      title: Notas
+    update:
+      edited_just_now: Editado hace un momento
+      success: La nota se actualizó con éxito.
+  passwords:
+    create:
+      success: Instrucciones de restablecimiento de contraseña enviadas.
+    edit:
+      password_confirmation_label: Confirmación de contraseña
+      password_confirmation_placeholder: Repetir nueva contraseña
+      password_label: Contraseña
+      password_placeholder: Introduzca la nueva contraseña
+      save: Salvar
+      update_your_password: Actualiza tu contraseña
+    invalid_reset_link: El enlace de restablecimiento de contraseña no es válido o ha caducado.
+    mailer_subject: Restablece tu contraseña
+    new:
+      email_address_label: Dirección de correo electrónico
+      email_address_placeholder: Ingresa tu dirección de correo electrónico
+      email_reset_instructions: Enviar por correo electrónico las instrucciones de restablecimiento
+      forgot_your_password: "¿Olvidaste tu contraseña?"
+      sign_in_instead: Inicie sesión en su lugar
+    update:
+      failure: Las contraseñas no coincidían.
+      success: Se ha restablecido la contraseña.
+  passwords_mailer:
+    reset:
+      reset_password_html: Puede restablecer su contraseña dentro de los próximos 15 minutos en <a href="%{link}">esta página de restablecimiento de contraseña</a>.
+  sessions:
+    create:
+      failure: Pruebe con otra dirección de correo electrónico o contraseña.
+    new:
+      email_address_label: Dirección de correo electrónico
+      email_address_placeholder: Ingresa tu dirección de correo electrónico
+      forgot_your_password: "¿Olvidaste tu contraseña?"
+      password_label: Contraseña
+      password_placeholder: Ingresa tu contraseña
+      sign_in: Inicia sesión
+  settings:
+    index:
+      confirm_signout: "¿Cerrar sesión?"
+      language: Idioma
+      save: Salvar
+      signout_button: Cerrar sesión
+      title: Configuración
+    language_options:
+      en: Inglés
+      es: Español
+    update:
+      success: La configuración se actualizó correctamente.
+  shared:
+    application_title: Notas
+    back_button: Volver
+    rate_limit_try_again_later: Vuelva a intentarlo más tarde.
+  static_pages:
+    offline:
+      header: Parece que estás desconectado...
+      message: Comprueba tu conexión de red e inténtalo de nuevo.
+      title: Sin conexión

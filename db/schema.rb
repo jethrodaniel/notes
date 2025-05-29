@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_04_19_072506) do
+ActiveRecord::Schema[8.0].define(version: 2025_05_28_222929) do
   create_table "notes", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
     t.text "content", null: false
     t.string "user_id", null: false
@@ -34,6 +34,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_04_19_072506) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "language", default: "en", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
   end
 

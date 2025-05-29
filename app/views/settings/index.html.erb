@@ -1,7 +1,7 @@
 <% content_for :title, t(".title") %>
 
 <div class="flex-1 flex flex-col w-full items-center">
-  <div class="flex-1 flex flex-col items-center md:w-5/6 w-full h-full gap-2">
+  <div class="flex-1 flex flex-col items-center w-full md:w-5/6 h-full gap-2">
     <nav class="flex w-full gap-4 bg-zinc-50 dark:bg-zinc-950 p-2 py-3 border-b border-zinc-400 dark:border-zinc-600 shadow flex justify-center md:justify-start w-full min-h-12">
       <div class="flex justify-end gap-4 items-center">
         <%= link_to notes_path,
@@ -19,13 +19,40 @@
       <div class="p-2 min-w-12"></div>
     </nav>
 
-    <div class="flex flex-col items-center w-full">
-      <div class="flex flex-col items-center w-full min-h-1/2 p-4">
+    <div class="flex flex-col items-center justify-center min-w-2/3 p-2">
+      <%= render 'layouts/flash' %>
+
+      <%= form_with model: Current.user,
+        url: settings_path,
+        method: :patch,
+        data: { turbo_frame: "_top" },
+        class: "w-full h-full p-2 m-2 border border-zinc-400 dark:border-zinc-600 shadow rounded-lg" do |form| %>
+        <div class="flex flex-col w-full h-full">
+          <div class="p-2 w-full flex items-center gap-4">
+            <%= form.label :language,
+              t(".language"),
+              class: "text-small font-medium"
+            %>
+            <%= form.select :language,
+              language_options_for_select,
+              {},
+              {class: "rounded p-2 border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800"}
+            %>
+          </div>
+          <div class="flex w-full justify-center items-center">
+            <%= form.submit t(".save"),
+              class: "w-80 border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 hover:bg-zinc-800 shadow rounded-lg mt-6 p-1"
+            %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="flex w-full mt-8 justify-center items-center">
         <%= button_to session_path,
           method: :delete,
           data: { turbo_confirm: t(".confirm_signout") },
-          form_class: " flex justify-center p-2 rounded-lg shadow border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 min-w-1/2" do %>
-           <div class="font-2xl underline"><%= t(".signout_button") %></div>
+          class: "w-80 flex justify-center p-2 rounded-lg shadow border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800 min-w-1/2" do %>
+           <div class=""><%= t(".signout_button") %></div>
         <% end %>
       </div>
     </div>

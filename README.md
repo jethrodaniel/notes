@@ -62,6 +62,16 @@ convert tmp.png -define icon:auto-resize=256,64,48,32,16 app/assets/images/favic
 rm tmp.png
 ```
 
+## I18n
+
+Users can change their language in-app to either English or Spanish.
+
+Non-logged in pages (e.g, sign-in) aren't translated yet.
+
+Non-english translations were performed (crudely) using Duckduckgo translate.
+
+Spanish `datetime.distance_in_words` translations are from [svenfuchs/rails-i18n](https://github.com/svenfuchs/rails-i18n/blob/16ed6762fb666e91251e350572fadbea68c68359/rails/locale/es.yml#L63C1-L101C31) ([MIT](https://github.com/svenfuchs/rails-i18n/blob/16ed6762fb666e91251e350572fadbea68c68359/MIT-LICENSE.txt)).
+
 ## License
 
 Notes is released under the [GNU Affero General Public License Version 3 (AGPLv3) or any later version](https://spdx.org/licenses/AGPL-3.0-or-later.html).

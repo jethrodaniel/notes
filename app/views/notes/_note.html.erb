@@ -15,6 +15,19 @@
       <div class="flex justify-end">
         <small class="font-thin text-xs">
           <%= t("notes.index.edited_time_ago",
+            # i18n-tasks-use t('datetime.distance_in_words.about_x_hours')
+            # i18n-tasks-use t('datetime.distance_in_words.about_x_months')
+            # i18n-tasks-use t('datetime.distance_in_words.about_x_years')
+            # i18n-tasks-use t('datetime.distance_in_words.almost_x_years')
+            # i18n-tasks-use t('datetime.distance_in_words.half_a_minute')
+            # i18n-tasks-use t('datetime.distance_in_words.less_than_x_minutes')
+            # i18n-tasks-use t('datetime.distance_in_words.less_than_x_seconds')
+            # i18n-tasks-use t('datetime.distance_in_words.over_x_years')
+            # i18n-tasks-use t('datetime.distance_in_words.x_days')
+            # i18n-tasks-use t('datetime.distance_in_words.x_minutes')
+            # i18n-tasks-use t('datetime.distance_in_words.x_months')
+            # i18n-tasks-use t('datetime.distance_in_words.x_seconds')
+            # i18n-tasks-use t('datetime.distance_in_words.x_years')
             time_ago: time_ago_in_words(note.updated_at, format: :short)) %>
         </small>
       </div>

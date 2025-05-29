@@ -20,4 +20,17 @@ class UserTest < ActiveSupport::TestCase
       user.destroy!
     end
   end
+
+  test "validates language" do
+    assert_equal "en", users(:one).language
+    assert_predicate users(:one), :valid?
+
+    assert_equal "es", users(:es).language
+    assert_predicate users(:es), :valid?
+
+    users(:one).language = "foo"
+
+    assert_not_predicate users(:one), :valid?
+    assert_equal ["is not included in the list"], users(:one).errors[:language]
+  end
 end

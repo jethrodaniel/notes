@@ -15,12 +15,12 @@
 
     <%= form.text_field :title,
       data: { action: "input->auto-submit#submit" },
-      placeholder: "Title",
+      placeholder: t(".title"),
       class: "pt-4 pl-4 pb-2 rounded-t-lg text-xl" %>
 
     <%= form.label :content, class: "sr-only" %>
     <%= form.textarea :content,
-      placeholder: "Content",
+      placeholder: t(".content"),
       data: {
         controller: "textarea", textarea_target: "textarea",
         action: "auto-submit#submit"

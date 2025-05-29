@@ -6,11 +6,11 @@ Rails.application.routes.draw do
 
   resource :session
   resources :passwords, param: :token
+  get "offline", to: "static_pages#offline", as: :offline
 
   resources :notes, except: %i[new]
   resources :settings, only: %i[index]
-
-  get "offline", to: "static_pages#offline", as: :offline
+  patch "settings", to: "settings#update"
 
   root "notes#index"
 end

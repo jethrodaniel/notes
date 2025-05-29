@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern unless Rails.env.development?
 
   include Authentication
-
   include Pagy::Backend
+
+  around_action :switch_locale
+
+  def switch_locale(&action)
+    locale = Current.user&.language || I18n.default_locale
+    I18n.with_locale(locale, &action)
+  end
 end
