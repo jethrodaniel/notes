@@ -21,7 +21,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "get index in spanish" do
-    login_as users(:one).tap { it.update! language: :es }
+    login_as users(:es)
     get settings_path
 
     assert_response :success
@@ -53,11 +53,9 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
 
   test "update language from spanish to english" do
     assert_requires_login { get settings_path }
-    login_as users(:one)
+    login_as users(:es)
 
-    users(:one).update! language: :es
-
-    assert_changes -> { users(:one).reload.language }, from: "es", to: "en" do
+    assert_changes -> { users(:es).reload.language }, from: "es", to: "en" do
       patch settings_path, params: {
         user: {language: "en"}
       }
