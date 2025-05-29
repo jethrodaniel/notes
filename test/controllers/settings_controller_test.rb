@@ -17,7 +17,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
       assert_dom "option[selected='selected'][value='en']", text: "English"
       assert_dom "option[value='es']", text: "Spanish"
     end
-    assert_dom "input[type='submit']", value: "Save"
+    assert_dom "input[type='submit'][value=?]", "Save"
   end
 
   test "get index in spanish" do
@@ -32,7 +32,7 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
       assert_dom "option[value='en']", text: "Inglés"
       assert_dom "option[selected='selected'][value='es']", text: "Español"
     end
-    assert_dom "input[type='submit']", value: "Salvar"
+    assert_dom "input[type='submit'][value=?]", "Salvar"
   end
 
   test "update language from english to spanish" do
