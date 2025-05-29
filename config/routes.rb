@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   get "offline", to: "static_pages#offline", as: :offline
 
-  resources :notes, except: %i[new]
+  resources :notes, except: %i[new show]
   resources :settings, only: %i[index]
   patch "settings", to: "settings#update"
 

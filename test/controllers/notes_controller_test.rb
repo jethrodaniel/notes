@@ -1,10 +1,6 @@
 require "test_helper"
 
 class NotesControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @note = notes(:one)
-  end
-
   test "get index requires login" do
     assert_requires_login { get notes_url }
   end
@@ -38,11 +34,12 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference("Note.count", 1) do
       post notes_url, params: {
-        note: {content: "foo", user_id: users(:one).id}
+        note: {content: "foo"}
       }
     end
     assert_redirected_to edit_note_path(Note.last)
     assert_equal "Note was successfully created.", flash[:notice]
+    assert_equal Note.last.user, users(:one)
   end
 
   test "create note in spanish" do
@@ -50,47 +47,56 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
     assert_difference("Note.count", 1) do
       post notes_url, params: {
-        note: {content: "foo", user_id: users(:es).id}
+        note: {content: "foo"}
       }
     end
     assert_redirected_to edit_note_path(Note.last)
     assert_equal "La nota se ha creado con éxito.", flash[:notice]
+    assert_equal Note.last.user, users(:es)
   end
 
   test "get edit requires login" do
-    assert_requires_login { get edit_note_url(@note) }
+    assert_requires_login { get edit_note_url(notes(:one)) }
   end
 
   test "get edit" do
     login_as users(:one)
-    get edit_note_url(@note)
+    get edit_note_url(notes(:one))
 
     assert_response :success
 
     assert_dom "title", text: "Editing note"
-    assert_dom "small[id='#{dom_id(@note)}_edited_at']",
-      "Edited #{@note.updated_at}"
+    assert_dom "small[id='#{dom_id(notes(:one))}_edited_at']",
+      "Edited #{notes(:one).updated_at}"
   end
 
   test "get edit in spanish" do
-    login_as users(:one).tap { it.update! language: :es }
-    get edit_note_url(@note)
+    login_as users(:es)
+    get edit_note_url(notes(:es_one))
 
     assert_response :success
 
     assert_dom "title", text: "Editar nota"
-    assert_dom "small[id='#{dom_id(@note)}_edited_at']",
-      "Editado #{@note.updated_at}"
+    assert_dom "small[id='#{dom_id(notes(:es_one))}_edited_at']",
+      "Editado #{notes(:es_one).updated_at}"
+  end
+
+  test "get edit only shows the user's notes" do
+    login_as users(:one)
+
+    get edit_note_url(notes(:es_one))
+
+    assert_response :not_found
   end
 
   test "update note requires login" do
-    assert_requires_login { patch note_url(@note) }
+    assert_requires_login { patch note_url(notes(:one)) }
   end
 
   test "update note" do
     login_as users(:one)
-    patch note_url(@note), params: {
-      note: {content: "foo", user_id: users(:one).id}
+    patch note_url(notes(:one)), params: {
+      note: {content: "foo"}
     }
 
     assert_redirected_to notes_url
@@ -99,23 +105,34 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
   test "update note in spanish" do
     login_as users(:es)
-    patch note_url(@note), params: {
-      note: {content: "foo", user_id: users(:es).id}
+    patch note_url(notes(:es_one)), params: {
+      note: {content: "foo"}
     }
 
     assert_redirected_to notes_url
     assert_equal "La nota se actualizó con éxito.", flash[:notice]
   end
 
+  test "update note only allows updating the user's notes" do
+    login_as users(:one)
+
+    patch note_url(notes(:es_one)), params: {
+      note: {content: "foo"}
+    }
+
+    assert_response :not_found
+  end
+
   test "destroy note requires login" do
-    assert_requires_login { delete note_url(@note) }
+    assert_requires_login { delete note_url(notes(:one)) }
   end
 
   test "destroy note" do
     login_as users(:one)
+    note = notes(:one)
 
     assert_difference("Note.count", -1) do
-      delete note_url(@note)
+      delete note_url(note)
     end
 
     assert_redirected_to notes_url
@@ -124,12 +141,21 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
   test "destroy note in spanish" do
     login_as users(:es)
+    note = notes(:es_one)
 
     assert_difference("Note.count", -1) do
-      delete note_url(@note)
+      delete note_url(note)
     end
 
     assert_redirected_to notes_url
     assert_equal "La nota se ha destruido con éxito.", flash[:notice]
+  end
+
+  test "destroy note only allows deleting the user's notes" do
+    login_as users(:one)
+
+    delete note_url(notes(:es_one))
+
+    assert_response :not_found
   end
 end

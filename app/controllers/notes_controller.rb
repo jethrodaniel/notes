@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :set_note, only: %i[show edit update destroy]
+  before_action :set_note, only: %i[edit update destroy]
 
   def index
     query = params[:q]
@@ -18,9 +18,6 @@ class NotesController < ApplicationController
       format.html
       format.turbo_stream if request_from_notes_index?
     end
-  end
-
-  def show
   end
 
   def edit
@@ -62,8 +59,10 @@ class NotesController < ApplicationController
   private
 
   def set_note
-    @note = Note.find(params.expect(:id))
+    @note = authorized_scope.find(params.expect(:id))
   end
+
+  def authorized_scope = Note.where(user: Current.user)
 
   def note_params
     params.expect(note: [:title, :content]).merge(user: Current.user)

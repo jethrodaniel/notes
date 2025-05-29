@@ -8,3 +8,7 @@ one:
 two:
   content: Note two has no title
   user: one
+
+es_one:
+  content: Note 1 for es user
+  user: es
