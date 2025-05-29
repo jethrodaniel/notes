@@ -5,6 +5,11 @@ user = User.create!(
   password: "password"
 )
 
+other_user = User.create!(
+  email_address: "other@user.com",
+  password: "password"
+)
+
 attrs = {
   "Mitch Hedberg" => Faker::Quote.fetch_all("quote.mitch_hedberg"),
   "Matz" => Faker::Quote.fetch_all("quote.matz"),
@@ -22,6 +27,10 @@ end.shuffle
 attrs.each_with_index do |attr, index|
   attr[:title] = "#{index} #{attr[:title]}"
 end
+
+attrs += [
+  {title: nil, content: "", user_id: other_user.id}
+]
 
 Note.insert_all(attrs)
 Note.rebuild_full_text_search
