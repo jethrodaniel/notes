@@ -7,7 +7,8 @@ class SettingsController < ApplicationController
       if Current.user.update(settings_params)
         format.html do
           redirect_to settings_path,
-            notice: t(".success", locale: Current.user.language)
+            notice: t(".success", locale: Current.user.language),
+            status: :see_other
         end
       else
         format.html { render :index, status: :unprocessable_entity }
