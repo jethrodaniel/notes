@@ -75,6 +75,11 @@
     <%= render "notes/pagination", pagy: @pagy %>
   </div>
 
+  <div class="sticky bottom-4 flex flex-col gap-2">
+    <%= render "layouts/flash" %>
+  </div>
+
+
   <%= button_to notes_path,
     params: { note: { title: "", content: "" } },
     form_class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] border border-zinc-400 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow rounded-lg size-16 z-1" do %>

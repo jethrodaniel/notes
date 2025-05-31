@@ -73,5 +73,6 @@ class NotesTest < ApplicationSystemTestCase
     end
 
     assert_current_path notes_path
+    assert_text "Note was successfully destroyed."
   end
 end
