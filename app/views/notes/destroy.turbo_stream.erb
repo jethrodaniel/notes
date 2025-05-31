@@ -1,0 +1,3 @@
+<%= turbo_stream.replace dom_id(Note, :empty_note_discarded) do %>
+  <%= render partial: "notes/empty_note_discarded", locals: { hidden: false} %>
+<% end %>

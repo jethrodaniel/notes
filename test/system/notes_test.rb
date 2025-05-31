@@ -24,6 +24,23 @@ class NotesTest < ApplicationSystemTestCase
     assert_text "Edited just now" unless javascript_disabled?
   end
 
+  test "empty notes are discarded on the index" do
+    return unless javascript_enabled?
+
+    visit notes_url
+
+    assert_button "Add a note"
+    refute_text "Empty note discarded"
+
+    click_on "Add a note"
+
+    assert_current_path edit_note_path(Note.last)
+
+    visit notes_url
+
+    assert_text "Empty note discarded"
+  end
+
   test "view a note" do
     visit edit_note_url(@note)
 

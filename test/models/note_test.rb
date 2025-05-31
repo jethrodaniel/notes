@@ -9,6 +9,13 @@ class NoteTest < ActiveSupport::TestCase
     assert_equal :created_at, Note.implicit_order_column
   end
 
+  test "empty?" do
+    assert_predicate Note.new, :empty?
+    assert_not_predicate Note.new(title: "a"), :empty?
+    assert_not_predicate Note.new(content: "a"), :empty?
+    assert_not_predicate Note.new(title: "a", content: "a"), :empty?
+  end
+
   test "full_text_search" do
     Note.delete_all
 

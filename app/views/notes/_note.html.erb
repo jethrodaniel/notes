@@ -1,4 +1,7 @@
-<li id="<%= dom_id note %>" class="w-full rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800">
+<%= tag.li "",
+  id: dom_id(note),
+  data: note.empty? ? {remove_empty_notes_target: "item"} : {},
+  class: "w-full rounded-lg border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
   <article class="h-full">
     <%= link_to edit_note_path(note),
       id: dom_id(note),
@@ -12,6 +15,11 @@
         <% content = truncate note.content, length: 280 %>
         <p class="w-full h-full whitespace-pre-line"><%= content %></p>
       </div>
+
+      <%= button_to false, note_path(note),
+        method: :delete,
+        form: note.empty? ? {data: {remove_empty_notes_target: "form"}} : {},
+        class: "hidden" %>
 
       <div class="flex justify-end">
         <small class="font-thin text-xs">
@@ -34,4 +42,4 @@
       </div>
     <% end %>
   </article>
-</li>
+<% end %>

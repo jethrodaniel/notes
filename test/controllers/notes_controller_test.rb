@@ -38,21 +38,8 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
       }
     end
     assert_redirected_to edit_note_path(Note.last)
-    assert_equal "Note was successfully created.", flash[:notice]
+    assert_empty flash
     assert_equal Note.last.user, users(:one)
-  end
-
-  test "create note in spanish" do
-    login_as users(:es)
-
-    assert_difference("Note.count", 1) do
-      post notes_url, params: {
-        note: {content: "foo"}
-      }
-    end
-    assert_redirected_to edit_note_path(Note.last)
-    assert_equal "La nota se ha creado con éxito.", flash[:notice]
-    assert_equal Note.last.user, users(:es)
   end
 
   test "get edit requires login" do
@@ -157,5 +144,33 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     delete note_url(notes(:es_one))
 
     assert_response :not_found
+  end
+
+  test "destroy note (turbo stream)" do
+    login_as users(:one)
+    note = notes(:one)
+
+    delete note_url(note, format: :turbo_stream)
+
+    assert_turbo_stream(
+      target: dom_id(Note, :empty_note_discarded),
+      action: "replace"
+    ) do
+      assert_dom "*", "Empty note discarded"
+    end
+  end
+
+  test "destroy note in spanish (turbo stream)" do
+    login_as users(:es)
+    note = notes(:es_one)
+
+    delete note_url(note, format: :turbo_stream)
+
+    assert_turbo_stream(
+      target: dom_id(Note, :empty_note_discarded),
+      action: "replace"
+    ) do
+      assert_dom "*", "Nota vacía descartada"
+    end
   end
 end

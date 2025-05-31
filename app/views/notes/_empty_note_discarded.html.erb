@@ -1,0 +1,6 @@
+<%# locals: (hidden: true) -%>
+<%= tag.div \
+  id: dom_id(Note, :empty_note_discarded),
+  class: "#{hidden and 'hidden'} p-4 rounded-lg bg-zinc-50 dark:bg-zinc-900 border border-zinc-400 dark:border-zinc-600 shadow hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
+  <%= t("notes.empty_note_discarded") %>
+<% end %>

@@ -40,8 +40,6 @@ es:
         one: "%{count} año"
         other: "%{count} años"
   notes:
-    create:
-      success: La nota se ha creado con éxito.
     destroy:
       success: La nota se ha destruido con éxito.
     edit:
@@ -50,6 +48,7 @@ es:
       edited_at: Editado %{time}
       submit: Actualizar nota
       title: Editar nota
+    empty_note_discarded: Nota vacía descartada
     form:
       content: Contenido
       title: Título

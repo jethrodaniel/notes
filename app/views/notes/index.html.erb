@@ -67,8 +67,12 @@
     <% end %>
 
     <div class="flex-1 p-1">
-     <ol id="<%= dom_id(Note, :index) %>" class="grid auto-rows-min grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-2">
-       <%= render @notes %>
+      <ol
+        id="<%= dom_id(Note, :index) %>"
+        data-controller="remove-empty-notes"
+        data-remove-empty-notes-delay-value="300"
+        class="grid auto-rows-min grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-2">
+        <%= render @notes %>
       </ol>
     </div>
 
@@ -77,6 +81,7 @@
 
   <div class="sticky bottom-4 flex flex-col gap-2">
     <%= render "layouts/flash" %>
+    <%= render "notes/empty_note_discarded" %>
   </div>
 
 
