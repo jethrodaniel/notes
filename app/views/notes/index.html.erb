@@ -70,7 +70,7 @@
       <ol
         id="<%= dom_id(Note, :index) %>"
         data-controller="remove-empty-notes"
-        data-remove-empty-notes-delay-value="300"
+        data-remove-empty-notes-delay-value="500"
         class="grid auto-rows-min grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 w-full gap-2">
         <%= render @notes %>
       </ol>
@@ -79,9 +79,12 @@
     <%= render "notes/pagination", pagy: @pagy %>
   </div>
 
+  <div class="sticky bottom-28 flex flex-col gap-2 w-full md:w-5/6 text-center">
+    <%= render "notes/empty_note_discarded" %>
+  </div>
+
   <div class="sticky bottom-4 flex flex-col gap-2">
     <%= render "layouts/flash" %>
-    <%= render "notes/empty_note_discarded" %>
   </div>
 
 
