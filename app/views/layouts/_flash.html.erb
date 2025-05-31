@@ -1,4 +1,7 @@
-<div class="">
+<div
+  data-controller="auto-remove"
+  data-auto-remove-delay-value="5000"
+  class="">
   <% flash.each do |type, message| %>
     <div class="<%= flash_color(type) %> flex items-center justify-center font-medium rounded-lg p-4">
       <%= message %>
