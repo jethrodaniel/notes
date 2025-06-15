@@ -19,8 +19,7 @@ gem "solid_queue"
 gem "solid_cable"
 
 gem "bootsnap", require: false
-# Use non-git when https://github.com/basecamp/kamal/pull/1499 is released
-gem "kamal", require: false, github: "basecamp/kamal"
+gem "kamal", require: false
 gem "thruster", require: false
 
 gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"

@@ -1,20 +1,4 @@
 GIT
-  remote: https://github.com/basecamp/kamal.git
-  revision: 344e2d7995e0134aa52f195a984d8d5e24e31d94
-  specs:
-    kamal (2.6.1)
-      activesupport (>= 7.0)
-      base64 (~> 0.2)
-      bcrypt_pbkdf (~> 1.0)
-      concurrent-ruby (~> 1.2)
-      dotenv (~> 3.1)
-      ed25519 (~> 1.4)
-      net-ssh (~> 7.3)
-      sshkit (>= 1.23.0, < 2.0)
-      thor (~> 1.3)
-      zeitwerk (>= 2.6.18, < 3.0)
-
-GIT
   remote: https://github.com/jethrodaniel/rubocop-lazy-config.git
   revision: 3d664f5376331ed967c27329eff55f9d614e18bc
   specs:
@@ -187,6 +171,17 @@ GEM
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     json (2.12.2)
+    kamal (2.6.1)
+      activesupport (>= 7.0)
+      base64 (~> 0.2)
+      bcrypt_pbkdf (~> 1.0)
+      concurrent-ruby (~> 1.2)
+      dotenv (~> 3.1)
+      ed25519 (~> 1.4)
+      net-ssh (~> 7.3)
+      sshkit (>= 1.23.0, < 2.0)
+      thor (~> 1.3)
+      zeitwerk (>= 2.6.18, < 3.0)
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
@@ -456,7 +451,7 @@ DEPENDENCIES
   faker
   i18n-tasks
   importmap-rails
-  kamal!
+  kamal
   pagy
   propshaft
   puma (>= 5.0)
