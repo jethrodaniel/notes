@@ -22,7 +22,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
 
-gem "sqlite_extensions-uuid", github: "jethrodaniel/sqlite_extensions-uuid"
+gem "sqlite_extensions-uuid"
 gem "pagy"
 
 group :development, :test do
