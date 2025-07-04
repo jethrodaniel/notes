@@ -42,5 +42,4 @@ end
 group :test do
   gem "capybara"
   gem "cuprite"
-  gem "selenium-webdriver"
 end

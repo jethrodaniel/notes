@@ -1,6 +1,7 @@
 require "test_helper"
 
 require "capybara/cuprite"
+
 Capybara.register_driver :cuprite_debug do |app|
   Capybara::Cuprite::Driver.new(app, inspector: ENV["INSPECTOR"])
 end
@@ -12,10 +13,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     driven_by ENV["GUI"] ? :cuprite_debug : :cuprite, screen_size: [1400, 1400]
   in "rack-test"
     driven_by :rack_test
-  else
-    driven_by :selenium,
-      using: ENV["GUI"] ? :firefox : :headless_firefox,
-      screen_size: [1400, 1400]
   end
 
   def login_as user
