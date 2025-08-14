@@ -1,12 +1,12 @@
 User.destroy_all
 
 user = User.create!(
-  email_address: "admin@example.com",
+  email_address: "admin@example.test",
   password: "password"
 )
 
 other_user = User.create!(
-  email_address: "other@user.com",
+  email_address: "other@example.test",
   password: "password"
 )
 

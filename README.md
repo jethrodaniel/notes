@@ -26,7 +26,7 @@ Then visit http://localhost:3000 in your browser.
 You can sign in with the default credentials (see `db/seeds.rb` for details):
 
 ```
-email: admin@example.com
+email: admin@example.test
 password: password
 ```
 
