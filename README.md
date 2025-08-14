@@ -44,13 +44,89 @@ snap install chromium # e.g, on ubuntu 24.04
 
 ## Deployment
 
-You can deploy with [kamal](https://kamal-deploy.org/) like so:
+The app's setup to deploy to a single server using Kamal and [Bitwarden Secret Manager](https://kamal-deploy.org/docs/commands/secrets/#bitwarden-secrets-manager).
 
-- provision a server
-- `cp .env.example .env`, then fill out your information
-- vendor your own `basecamp/kamal-proxy` image: `bin/dotenv bin/update_kamal_proxy`
-- first time: `bin/deploy_setup`
-- subsequent deploys: `bin/deploy`
+### Rails credentials
+
+Before deploying, you need to fill in the required credentials:
+
+```console
+bin/rails credentials:edit -e production
+```
+
+```yaml
+secret_key_base: your-secret-key-base
+
+kamal:
+  image: username/notes
+  proxy_host: your.deploy.url
+  registry_server: registry.example.com
+  registry_username: username
+  retain_containers: 2
+  server: 192.123.456.789
+  ssh_user: username
+  volume_storage: notes_storage:/rails/storage
+
+smtp:
+  user_name: username
+  password: password
+  address: your.smtp.address
+  host: your.smtp.host
+  port: 123
+  authentication: TODO
+  host: your.deploylurl
+  from: user@your.deploy.url
+```
+
+### Setup bitwarden
+
+Then create a bitwarden account, and setup a secrets manager project with the following keys:
+
+```
+KAMAL_REGISTRY_PASSWORD
+RAILS_MASTER_KEY
+```
+
+Download and setup the secrets manager: https://bitwarden.com/help/secrets-manager-cli/
+
+Then add your bitwarden info to `.env`:
+
+```
+cp -v .env.example .env
+```
+```
+# .env
+export BWS_ACCESS_TOKEN="your token goes here"
+export BWS_SERVER_URL=https://vault.bitwarden.com
+```
+
+Sanity check if it works like so:
+
+```
+RAILS_ENV=production bin/dotenv bin/kamal secrets print
+```
+
+**NOTE**: the above setup requires every instance of `kamal` be called with `RAILS_ENV` and `bin/dotenv bin/kamal`.
+
+#### Server setup
+
+Vendor our own `kamal-proxy`:
+
+```
+bin/dotenv bin/update_kamal_proxy`
+```
+
+Tell our server to use that image:
+
+```
+bin/tell_kamal_to_use_our_proxy_image
+```
+
+#### Deploy
+
+```
+RAILS_ENV=production bin/dotenv bin/kamal deploy
+```
 
 ## Logo
 
