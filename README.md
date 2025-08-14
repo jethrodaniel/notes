@@ -44,7 +44,7 @@ snap install chromium # e.g, on ubuntu 24.04
 
 ## Deployment
 
-The app's setup to deploy to a single server using Kamal and [Bitwarden Secret Manager](https://kamal-deploy.org/docs/commands/secrets/#bitwarden-secrets-manager).
+The app is setup to deploy to a single server using Kamal and [Bitwarden Secret Manager](https://kamal-deploy.org/docs/commands/secrets/#bitwarden-secrets-manager).
 
 ### Rails credentials
 
@@ -98,7 +98,7 @@ kamal:
 
 Then create a bitwarden account, and setup a secrets manager project for each environment with the following keys:
 
-```
+```sh
 KAMAL_REGISTRY_PASSWORD
 RAILS_MASTER_KEY
 ```
@@ -109,10 +109,10 @@ Download and setup the secrets manager: https://bitwarden.com/help/secrets-manag
 
 Then add your bitwarden info to `.env`:
 
-```
+```sh
 cp -v .env.example .env
 ```
-```
+```sh
 # .env
 export BWS_ACCESS_TOKEN="your token goes here"
 export BWS_SERVER_URL=https://vault.bitwarden.com
@@ -120,7 +120,7 @@ export BWS_SERVER_URL=https://vault.bitwarden.com
 
 Sanity check if it works like so:
 
-```
+```sh
 RAILS_ENV=production bin/dotenv bin/kamal secrets print
 ```
 
@@ -130,26 +130,26 @@ RAILS_ENV=production bin/dotenv bin/kamal secrets print
 
 Vendor our own `kamal-proxy`:
 
-```
-bin/dotenv bin/update_kamal_proxy`
+```sh
+bin/dotenv bin/update_kamal_proxy
 ```
 
 Tell our server to use that image:
 
-```
+```sh
 bin/tell_kamal_to_use_our_proxy_image
 ```
 
 #### Deploy
 
-```
+```sh
 RAILS_ENV=staging bin/dotenv bin/kamal deploy
 RAILS_ENV=production bin/dotenv bin/kamal deploy
 ```
 
 One time setup needed afterwards:
 
-```
+```sh
 # create databases, seed staging
 RAILS_ENV=staging bin/dotenv bin/kamal app exec 'bin/rails db:setup'
 RAILS_ENV=production bin/dotenv bin/kamal app exec 'bin/rails db:setup'
@@ -165,7 +165,7 @@ RAILS_ENV=production bin/dotenv bin/kamal console
 
 To generate the `favicon.ico`:
 
-```
+```sh
 inkscape app/assets/images/icon.svg --export-width=256 --export-filename=tmp.png
 convert tmp.png -define icon:auto-resize=256,64,48,32,16 app/assets/images/favicon.ico
 rm tmp.png
