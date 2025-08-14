@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+set -e
+
+bin/dotenv bws project list | ruby -rjson -e 'puts JSON.parse(ARGF.read).find{|k,v|k["name"]=="notes-#{ENV.fetch("RAILS_ENV")}"}["id"]'

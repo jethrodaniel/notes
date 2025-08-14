@@ -58,14 +58,15 @@ bin/rails credentials:edit -e production
 secret_key_base: your-secret-key-base
 
 kamal:
-  image: username/notes
+  service: notes-production
+  image: username/notes/notes-production
   proxy_host: your.deploy.url
   registry_server: registry.example.com
   registry_username: username
   retain_containers: 2
   server: 192.123.456.789
   ssh_user: username
-  volume_storage: notes_storage:/rails/storage
+  volume_storage: notes_production_storage:/rails/storage
 
 smtp:
   user_name: username
@@ -78,14 +79,31 @@ smtp:
   from: user@your.deploy.url
 ```
 
+Setting up staging is similar, just change the hosts/volumes/etc to the `staging` versions.
+
+```console
+bin/rails credentials:edit -e staging
+```
+
+```yaml
+kamal:
+  service: notes-staging
+  image: username/notes/notes-staging
+  proxy_host: staging.your.deploy.url
+  volume_storage: notes_staging_storage:/rails/storage
+  # ...
+```
+
 ### Setup bitwarden
 
-Then create a bitwarden account, and setup a secrets manager project with the following keys:
+Then create a bitwarden account, and setup a secrets manager project for each environment with the following keys:
 
 ```
 KAMAL_REGISTRY_PASSWORD
 RAILS_MASTER_KEY
 ```
+
+Projects should be named `notes-production`, `notes-staging`, etc (match `RAILS_ENV`).
 
 Download and setup the secrets manager: https://bitwarden.com/help/secrets-manager-cli/
 
@@ -125,7 +143,15 @@ bin/tell_kamal_to_use_our_proxy_image
 #### Deploy
 
 ```
+RAILS_ENV=staging bin/dotenv bin/kamal deploy
 RAILS_ENV=production bin/dotenv bin/kamal deploy
+```
+
+One time setup needed afterwards:
+
+```
+RAILS_ENV=production bin/dotenv bin/kamal app exec 'bin/rails db:create db:migrate
+RAILS_ENV=staging bin/dotenv bin/kamal app exec 'bin/rails db:create db:migrate
 ```
 
 ## Logo
