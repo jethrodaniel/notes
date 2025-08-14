@@ -150,11 +150,13 @@ RAILS_ENV=production bin/dotenv bin/kamal deploy
 One time setup needed afterwards:
 
 ```
-# create databases
-RAILS_ENV=staging bin/dotenv bin/kamal app exec 'bin/rails db:create db:migrate'
-RAILS_ENV=production bin/dotenv bin/kamal app exec 'bin/rails db:create db:migrate'
+# create databases, seed staging
+RAILS_ENV=staging bin/dotenv bin/kamal app exec 'bin/rails db:setup'
+RAILS_ENV=production bin/dotenv bin/kamal app exec 'bin/rails db:setup'
 
-# create your system user (see db/seeds.rb)
+# production: create your user (see db/seeds.rb)
+# staging: update your weak db/seed user's password
+#
 RAILS_ENV=staging bin/dotenv bin/kamal console
 RAILS_ENV=production bin/dotenv bin/kamal console
 ```

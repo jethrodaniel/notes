@@ -1,3 +1,5 @@
+return if Rails.env.production?
+
 User.destroy_all
 
 user = User.create!(
