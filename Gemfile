@@ -24,6 +24,7 @@ gem "thruster", require: false
 
 gem "sqlite_extensions-uuid"
 gem "pagy"
+gem "faker"
 
 group :development, :test do
   gem "debug", platforms: %i[mri windows], require: "debug/prelude"
@@ -35,7 +36,6 @@ end
 
 group :development do
   gem "web-console"
-  gem "faker"
   gem "i18n-tasks", require: false
 end
 
