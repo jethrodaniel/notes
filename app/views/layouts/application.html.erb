@@ -21,7 +21,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="w-screen h-screen flex flex-col items-center bg-zinc-50 text-zinc-950 dark:bg-zinc-950 dark:text-zinc-200">
+  <body class="
+    w-screen h-screen
+    flex flex-col items-center
+    overflow-x-hidden
+    bg-zinc-50
+    text-zinc-950
+    dark:bg-zinc-950
+    dark:text-zinc-200"
+  >
     <%= yield %>
   </body>
 </html>
