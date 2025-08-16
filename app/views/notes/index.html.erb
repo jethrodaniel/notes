@@ -66,12 +66,12 @@
       </div>
     <% end %>
 
-    <div class="flex-1 p-1">
+    <div class="flex-1 p-1 w-full">
       <ol
         id="<%= dom_id(Note, :index) %>"
         data-controller="remove-empty-notes"
         data-remove-empty-notes-delay-value="500"
-        class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] w-full gap-2">
+        class="grid grid-cols-[repeat(auto-fill,minmax(16rem,1fr))] gap-2">
         <%= render @notes %>
       </ol>
     </div>
