@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get "offline", to: "static_pages#offline", as: :offline
 
   resources :notes, except: %i[new show]
-  resources :settings, only: %i[index]
-  patch "settings", to: "settings#update"
+
+  get "preferences", to: "preferences#edit", as: :preferences
+  patch "preferences", to: "preferences#update"
 
   root "notes#index"
 end

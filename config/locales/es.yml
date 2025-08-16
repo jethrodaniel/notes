@@ -57,13 +57,13 @@ es:
       clear: Despejar
       edited_time_ago: Editado hace %{time_ago}
       load_more: Cargar más
+      preferences: Configuración
       query: Búsqueda de notas
       query_placeholder: Busca en tus notas
       search: Buscar
       search_results_html:
         one: Mostrando %{count} resultado para <em>%{query}</em>.
         other: Mostrando %{count} resultados para <em>%{query}</em>.
-      settings: Configuración
       title: Notas
     update:
       edited_just_now: Editado hace un momento
@@ -92,6 +92,19 @@ es:
   passwords_mailer:
     reset:
       reset_password_html: Puede restablecer su contraseña dentro de los próximos 15 minutos en <a href="%{link}">esta página de restablecimiento de contraseña</a>.
+  preferences:
+    edit:
+      confirm_signout: "¿Cerrar sesión?"
+      signout_button: Cerrar sesión
+      title: Configuración
+    form:
+      language: Idioma
+      save: Salvar
+    language_options:
+      en: Inglés
+      es: Español
+    update:
+      success: La configuración se actualizó correctamente.
   sessions:
     create:
       failure: Pruebe con otra dirección de correo electrónico o contraseña.
@@ -102,18 +115,6 @@ es:
       password_label: Contraseña
       password_placeholder: Ingresa tu contraseña
       sign_in: Inicia sesión
-  settings:
-    index:
-      confirm_signout: "¿Cerrar sesión?"
-      language: Idioma
-      save: Salvar
-      signout_button: Cerrar sesión
-      title: Configuración
-    language_options:
-      en: Inglés
-      es: Español
-    update:
-      success: La configuración se actualizó correctamente.
   shared:
     application_title: Notas
     back_button: Volver

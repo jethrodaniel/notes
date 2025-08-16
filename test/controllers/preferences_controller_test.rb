@@ -1,19 +1,19 @@
 require "test_helper"
 
-class SettingsControllerTest < ActionDispatch::IntegrationTest
+class PreferencesControllerTest < ActionDispatch::IntegrationTest
   test "get index requires login" do
-    assert_requires_login { get settings_path }
+    assert_requires_login { get preferences_path }
   end
 
   test "get index" do
     login_as users(:one)
-    get settings_path
+    get preferences_path
 
     assert_response :success
 
-    assert_dom "title", text: "Settings"
-    assert_dom "label[for='user_language']", text: "Language"
-    assert_dom "select[id='user_language']" do
+    assert_dom "title", text: "Preferences"
+    assert_dom "label[for='preferences_language']", text: "Language"
+    assert_dom "select[id='preferences_language']" do
       assert_dom "option[selected='selected'][value='en']", text: "English"
       assert_dom "option[value='es']", text: "Spanish"
     end
@@ -22,13 +22,13 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
 
   test "get index in spanish" do
     login_as users(:es)
-    get settings_path
+    get preferences_path
 
     assert_response :success
 
     assert_dom "title", text: "Configuración"
-    assert_dom "label[for='user_language']", text: "Idioma"
-    assert_dom "select[id='user_language']" do
+    assert_dom "label[for='preferences_language']", text: "Idioma"
+    assert_dom "select[id='preferences_language']" do
       assert_dom "option[value='en']", text: "Inglés"
       assert_dom "option[selected='selected'][value='es']", text: "Español"
     end
@@ -36,15 +36,17 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update language from english to spanish" do
-    assert_requires_login { get settings_path }
+    assert_requires_login { get preferences_path }
     login_as users(:one)
 
-    assert_changes -> { users(:one).reload.language }, from: "en", to: "es" do
-      patch settings_path, params: {
-        user: {language: "es"}
+    assert_changes -> {
+      users(:one).reload.preferences.language
+    }, from: "en", to: "es" do
+      patch preferences_path, params: {
+        preferences: {language: "es"}
       }
     end
-    assert_redirected_to settings_url
+    assert_redirected_to preferences_url
     assert_equal(
       "La configuración se actualizó correctamente.",
       flash[:notice]
@@ -52,17 +54,19 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update language from spanish to english" do
-    assert_requires_login { get settings_path }
+    assert_requires_login { get preferences_path }
     login_as users(:es)
 
-    assert_changes -> { users(:es).reload.language }, from: "es", to: "en" do
-      patch settings_path, params: {
-        user: {language: "en"}
+    assert_changes -> {
+      users(:es).reload.preferences.language
+    }, from: "es", to: "en" do
+      patch preferences_path, params: {
+        preferences: {language: "en"}
       }
     end
-    assert_redirected_to settings_url
+    assert_redirected_to preferences_url
     assert_equal(
-      "Settings were successfully updated.",
+      "Preferences were successfully updated.",
       flash[:notice]
     )
   end
@@ -70,8 +74,8 @@ class SettingsControllerTest < ActionDispatch::IntegrationTest
   test "update language to an invalid value" do
     login_as users(:one)
 
-    patch settings_path, params: {
-      user: {language: "foobar"}
+    patch preferences_path, params: {
+      preferences: {language: "foobar"}
     }
 
     assert_response :unprocessable_entity

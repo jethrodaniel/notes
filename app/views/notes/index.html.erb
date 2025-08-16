@@ -7,10 +7,10 @@
   >
     <nav class="sticky top-0 z-1 gap-4 bg-zinc-50 dark:bg-zinc-950 p-2 py-3 border-b border-zinc-400 dark:border-zinc-600 shadow flex justify-center md:justify-start w-full min-h-12">
       <div class="flex justify-end gap-4 items-center">
-        <%= link_to settings_path,
+        <%= link_to preferences_path,
           class: "flex items-center justify-center h-full min-w-12 p-2 border border-zinc-400 dark:border-zinc-600 shadow rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
             <%= image_tag "bars-3.svg", class: "w-6 dark:invert" %>
-            <div class="sr-only"><%= t(".settings") %></div>
+            <div class="sr-only"><%= t(".preferences") %></div>
         <% end %>
       </div>
 

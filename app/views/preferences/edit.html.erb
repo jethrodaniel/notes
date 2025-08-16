@@ -21,29 +21,7 @@
   <div class="flex flex-col">
     <%= render 'layouts/flash' %>
 
-    <%= form_with model: Current.user,
-      url: settings_path,
-      method: :patch,
-      class: "h-full p-2 m-2 border border-zinc-400 dark:border-zinc-600 shadow rounded-lg" do |form| %>
-      <div class="flex flex-col w-full h-full">
-        <div class="p-2 w-full flex items-center gap-4">
-          <%= form.label :language,
-            t(".language"),
-            class: "text-small font-medium"
-          %>
-          <%= form.select :language,
-            language_options_for_select,
-            {},
-            {class: "rounded-lg p-2 border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 dark:hover:bg-zinc-800"}
-          %>
-        </div>
-        <div class="flex w-full justify-center items-center">
-          <%= form.submit t(".save"),
-            class: "w-80 border border-zinc-400 dark:border-zinc-600 hover:bg-zinc-200 hover:bg-zinc-800 shadow rounded-lg mt-6 p-1"
-          %>
-        </div>
-      </div>
-    <% end %>
+    <%= render "form", preferences: @preferences %>
 
     <div class="flex w-full mt-8 justify-center items-center">
       <%= button_to session_path,

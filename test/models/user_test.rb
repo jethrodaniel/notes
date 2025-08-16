@@ -21,16 +21,9 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "validates language" do
-    assert_equal "en", users(:one).language
-    assert_predicate users(:one), :valid?
+  test "has_one preferences" do
+    user = users(:one)
 
-    assert_equal "es", users(:es).language
-    assert_predicate users(:es), :valid?
-
-    users(:one).language = "foo"
-
-    assert_not_predicate users(:one), :valid?
-    assert_equal ["is not included in the list"], users(:one).errors[:language]
+    assert_equal "en", user.preferences.language
   end
 end

@@ -57,13 +57,13 @@ en:
       clear: Clear
       edited_time_ago: Edited %{time_ago} ago
       load_more: Load more
+      preferences: Preferences
       query: Notes search
       query_placeholder: Search your notes
       search: Search
       search_results_html:
         one: Showing %{count} result for <em>%{query}</em>.
         other: Showing %{count} results for <em>%{query}</em>.
-      settings: Settings
       title: Notes
     update:
       edited_just_now: Edited just now
@@ -92,6 +92,19 @@ en:
   passwords_mailer:
     reset:
       reset_password_html: You can reset your password within the next 15 minutes on <a href="%{link}">this password reset page</a>.
+  preferences:
+    edit:
+      confirm_signout: Sign out?
+      signout_button: Sign out
+      title: Preferences
+    form:
+      language: Language
+      save: Save
+    language_options:
+      en: English
+      es: Spanish
+    update:
+      success: Preferences were successfully updated.
   sessions:
     create:
       failure: Try another email address or password.
@@ -102,18 +115,6 @@ en:
       password_label: Password
       password_placeholder: Enter your password
       sign_in: Sign in
-  settings:
-    index:
-      confirm_signout: Sign out?
-      language: Language
-      save: Save
-      signout_button: Sign out
-      title: Settings
-    language_options:
-      en: English
-      es: Spanish
-    update:
-      success: Settings were successfully updated.
   shared:
     application_title: Notes
     back_button: Back

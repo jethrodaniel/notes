@@ -1,15 +1,15 @@
 require "application_system_test_case"
 
-class SettingsTest < ApplicationSystemTestCase
+class PreferencesSystemTest < ApplicationSystemTestCase
   setup do
     login_as users(:one)
   end
 
   test "sign out" do
-    visit settings_url
+    visit preferences_url
 
-    assert_title "Settings"
-    assert_text "Settings"
+    assert_title "Preferences"
+    assert_text "Preferences"
 
     if javascript_enabled?
       accept_confirm "Sign out?" do

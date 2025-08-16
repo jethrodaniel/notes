@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_05_28_222929) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_032203) do
   create_table "notes", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
     t.text "content", null: false
     t.string "user_id", null: false
@@ -18,6 +18,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_28_222929) do
     t.datetime "updated_at", null: false
     t.text "title"
     t.index ["user_id"], name: "index_notes_on_user_id"
+  end
+
+  create_table "preferences", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
+    t.string "user_id", null: false
+    t.string "language", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_preferences_on_user_id", unique: true
   end
 
   create_table "sessions", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
@@ -39,6 +47,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_28_222929) do
   end
 
   add_foreign_key "notes", "users"
+  add_foreign_key "preferences", "users"
   add_foreign_key "sessions", "users"
 
   # Virtual tables defined in this database.
