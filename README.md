@@ -2,9 +2,13 @@
 
 A simple note-taking web app.
 
+> [!NOTE]
+>
+> This is a _hobby_ project, don't expect stability, documentation, security fixes, etc.
+
 ## Tech stack
 
-Rails with Hotwire, Stimulus, Importmaps, Tailwind, and SQLite.
+Rails 8 with Hotwire + Stimulus, Tailwind, Importmaps, and SQLite.
 
 ## Getting started
 
@@ -177,7 +181,7 @@ Users can change their language in-app to either English or Spanish.
 
 Non-logged in pages (e.g, sign-in) aren't translated yet.
 
-Non-english translations were performed (crudely) using Duckduckgo translate.
+Non-english translations were performed (crudely) using AI translate.
 
 Spanish `datetime.distance_in_words` translations are from [svenfuchs/rails-i18n](https://github.com/svenfuchs/rails-i18n/blob/16ed6762fb666e91251e350572fadbea68c68359/rails/locale/es.yml#L63C1-L101C31) ([MIT](https://github.com/svenfuchs/rails-i18n/blob/16ed6762fb666e91251e350572fadbea68c68359/MIT-LICENSE.txt)).
 
