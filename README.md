@@ -63,7 +63,7 @@ secret_key_base: your-secret-key-base
 
 kamal:
   service: notes-production
-  image: username/notes/notes-production
+  image: username/notes
   proxy_host: your.deploy.url
   registry_server: registry.example.com
   registry_username: username
@@ -92,7 +92,6 @@ bin/rails credentials:edit -e staging
 ```yaml
 kamal:
   service: notes-staging
-  image: username/notes/notes-staging
   proxy_host: staging.your.deploy.url
   volume_storage: notes_staging_storage:/rails/storage
   # ...
