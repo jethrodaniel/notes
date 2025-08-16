@@ -99,6 +99,7 @@ es:
       title: Configuración
     form:
       language: Idioma
+      note_index_truncate_length: Tenga en cuenta la longitud truncada
       save: Salvar
     language_options:
       en: Inglés

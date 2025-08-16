@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_16_032203) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_16_050502) do
   create_table "notes", id: { type: :string, limit: 36, default: -> { "uuid()" } }, force: :cascade do |t|
     t.text "content", null: false
     t.string "user_id", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_16_032203) do
     t.string "language", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "note_index_truncate_length", default: 280, null: false
     t.index ["user_id"], name: "index_preferences_on_user_id", unique: true
   end
 

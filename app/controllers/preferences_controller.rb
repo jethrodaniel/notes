@@ -24,6 +24,6 @@ class PreferencesController < ApplicationController
   end
 
   def preference_params
-    params.expect(preferences: [:language])
+    params.expect(preferences: [:language, :note_index_truncate_length])
   end
 end

@@ -99,6 +99,7 @@ en:
       title: Preferences
     form:
       language: Language
+      note_index_truncate_length: Note truncate length
       save: Save
     language_options:
       en: English
