@@ -28,3 +28,6 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
 
   def javascript_enabled? = !javascript_disabled?
 end
+
+module System
+end

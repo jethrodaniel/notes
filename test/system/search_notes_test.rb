@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class SearchNotesTest < ApplicationSystemTestCase
+class System::SearchNotesTest < ApplicationSystemTestCase
   setup do
     Note.rebuild_full_text_search
 

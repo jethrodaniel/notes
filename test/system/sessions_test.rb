@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class SessionsTest < ApplicationSystemTestCase
+class System::SessionsTest < ApplicationSystemTestCase
   test "sign in page" do
     visit new_session_url
 

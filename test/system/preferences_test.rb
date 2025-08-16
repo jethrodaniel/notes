@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class PreferencesSystemTest < ApplicationSystemTestCase
+class System::PreferencesTest < ApplicationSystemTestCase
   setup do
     login_as users(:one)
   end

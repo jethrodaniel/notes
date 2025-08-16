@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class NotesTest < ApplicationSystemTestCase
+class System::NotesTest < ApplicationSystemTestCase
   setup do
     @note = notes(:one)
 

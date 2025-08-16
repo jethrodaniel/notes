@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class PasswordsTest < ApplicationSystemTestCase
+class System::PasswordsTest < ApplicationSystemTestCase
   test "forgot password page" do
     visit new_password_url
 
