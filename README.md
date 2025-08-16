@@ -50,6 +50,12 @@ snap install chromium # e.g, on ubuntu 24.04
 
 The app is setup to deploy to a single server using Kamal and [Bitwarden Secret Manager](https://kamal-deploy.org/docs/commands/secrets/#bitwarden-secrets-manager).
 
+## Container registry
+
+Kamal currently requires a container registry.
+
+Most likely, you'll want your images to be private - an easy way set this up is to create a private Gitlab repository, and use the free container registry service that provides.
+
 ### Rails credentials
 
 Before deploying, you need to fill in the required credentials:
