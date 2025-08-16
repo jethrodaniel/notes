@@ -30,7 +30,7 @@ class NotesController < ApplicationController
       if @note.save
         format.html { redirect_to edit_note_path(@note) }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { render :new, status: :unprocessable_content }
       end
     end
   end
@@ -41,7 +41,7 @@ class NotesController < ApplicationController
         format.html { redirect_to notes_path, notice: t(".success") }
         format.turbo_stream
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
       end
     end
   end

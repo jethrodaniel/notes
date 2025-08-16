@@ -103,7 +103,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
         preferences: {language: "foobar"}
       }
 
-      assert_response :unprocessable_entity
+      assert_response :unprocessable_content
     end
   end
 
@@ -132,7 +132,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
         preferences: {note_index_truncate_length: "foobar"}
       }
 
-      assert_response :unprocessable_entity
+      assert_response :unprocessable_content
     end
   end
 end

@@ -13,7 +13,7 @@ class PreferencesController < ApplicationController
         notice: t(".success", locale: Current.user.preferences.language),
         status: :see_other
     else
-      render :edit, status: :unprocessable_entity
+      render :edit, status: :unprocessable_content
     end
   end
 
