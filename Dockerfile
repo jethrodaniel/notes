@@ -15,7 +15,7 @@ FROM docker.io/library/ruby:$RUBY_VERSION-alpine3.21 AS base
 WORKDIR /rails
 
 # Install base packages
-RUN apk add --no-cache curl jemalloc vips sqlite tzdata gcompat yaml-dev
+RUN apk add --no-cache curl jemalloc vips sqlite tzdata gcompat yaml-dev bash
 
 # Set production environment
 ENV RAILS_ENV="production" \
