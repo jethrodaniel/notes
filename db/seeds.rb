@@ -3,19 +3,18 @@ return if Rails.env.production?
 User.destroy_all
 
 user = User.create!(
-  email_address: "admin@example.test",
+  email_address: "admin@app.test",
   password: "password"
 )
 
 other_user = User.create!(
-  email_address: "other@example.test",
+  email_address: "other@app.test",
   password: "password"
 )
 
 attrs = {
   "Mitch Hedberg" => Faker::Quote.fetch_all("quote.mitch_hedberg"),
-  "Matz" => Faker::Quote.fetch_all("quote.matz"),
-  "Cowboy Bebop" => Faker::JapaneseMedia::CowboyBebop.fetch_all("cowboy_bebop.quote")
+  "Matz" => Faker::Quote.fetch_all("quote.matz")
 }.flat_map do |author, quotes|
   quotes.map do |quote|
     {
