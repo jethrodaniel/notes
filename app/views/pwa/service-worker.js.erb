@@ -5,7 +5,7 @@ const CACHE_KEY = `notes-${VERSION}`
 
 const STATIC_FILES = [
   <%=
-    assets = Rails.application.assets.load_path.manifest.values.sort
+    assets = Rails.application.assets.load_path.manifest.transform_values(&:digested_path).sort
       .map { |file| File.join(Rails.configuration.assets.prefix, file) }
       .map { |path| "\"#{path}\"" }
 
