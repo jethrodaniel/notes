@@ -4,12 +4,12 @@ const registerServiceWorker = async () => {
     try {
       const registration = await navigator.serviceWorker.register(
         "/service-worker.js",
-        {scope: "/"}
-      )
+        { scope: "/" },
+      );
     } catch (error) {
-      console.error(`Service worker registration failed: ${error}`)
+      console.error(`Service worker registration failed: ${error}`);
     }
   }
-}
+};
 
-registerServiceWorker()
+registerServiceWorker();

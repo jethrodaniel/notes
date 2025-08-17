@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "prettier": "^3.6.2"
+  },
+  "scripts": {
+    "lint": "prettier --check app/**/*.js",
+    "lint:fix": "prettier --write app/**/*.js"
+  }
+}

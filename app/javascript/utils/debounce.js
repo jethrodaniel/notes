@@ -1,11 +1,11 @@
 export const debounce = (callback, delay) => {
-  let timeout = null
+  let timeout = null;
 
   return (...args) => {
-    window.clearTimeout(timeout)
+    window.clearTimeout(timeout);
 
     timeout = window.setTimeout(() => {
-      callback.apply(null, args)
-    }, delay)
-  }
-}
+      callback.apply(null, args);
+    }, delay);
+  };
+};

@@ -1,7 +1,7 @@
 // Import and register all your controllers from the importmap via controllers/**/*_controller
-import { application } from "controllers/application"
-import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
-eagerLoadControllersFrom("controllers", application)
+import { application } from "controllers/application";
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading";
+eagerLoadControllersFrom("controllers", application);
 
-import AutoSubmit from '@stimulus-components/auto-submit'
-application.register('auto-submit', AutoSubmit)
+import AutoSubmit from "@stimulus-components/auto-submit";
+application.register("auto-submit", AutoSubmit);

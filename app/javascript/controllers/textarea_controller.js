@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 // TODO: replace with `field-sizing-content` when it's widely available.
 //
@@ -8,13 +8,13 @@ import { Controller } from "@hotwired/stimulus"
 //
 // Until then, we're using https://github.com/jackmoore/autosize
 //
-import autosize from "autosize"
+import autosize from "autosize";
 
 // Connects to data-controller="textarea"
 export default class extends Controller {
-  static targets = ["textarea"]
+  static targets = ["textarea"];
 
   connect() {
-    autosize(this.textareaTarget)
+    autosize(this.textareaTarget);
   }
 }

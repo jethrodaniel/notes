@@ -46,6 +46,13 @@ You may also need to install dependencies for system tests:
 snap install chromium # e.g, on ubuntu 24.04
 ```
 
+And `prettier` (linting):
+
+```sh
+sudo apt install -y npm
+npm install
+```
+
 ## Deployment
 
 The app is setup to deploy to a single server using Kamal and [Bitwarden Secret Manager](https://kamal-deploy.org/docs/commands/secrets/#bitwarden-secrets-manager).
