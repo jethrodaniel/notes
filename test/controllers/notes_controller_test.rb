@@ -14,6 +14,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
 
       assert_dom "title", text: "Notes"
       assert_dom "input[id='q']", placeholder: "Search your notes"
+      assert_dom "h1", text: "Notes"
     end
 
     test "get index in spanish" do
