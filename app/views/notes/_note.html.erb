@@ -12,8 +12,7 @@
       </div>
 
       <div class="flex-1">
-        <% content = truncate note.content, length: Current.user.preferences.note_index_truncate_length %>
-        <p class="w-full h-full whitespace-pre-line"><%= content %></p>
+        <p class="w-full h-full whitespace-pre-line break-all"><%= note.content %></p>
       </div>
 
       <%= button_to false, note_path(note),
