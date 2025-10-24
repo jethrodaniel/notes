@@ -3,12 +3,12 @@ return if Rails.env.production?
 User.destroy_all
 
 user = User.create!(
-  email_address: "admin@app.test",
+  email_address: "admin@notes.localhost",
   password: "password"
 )
 
 other_user = User.create!(
-  email_address: "other@app.test",
+  email_address: "other@notes.localhost",
   password: "password"
 )
 
