@@ -2,7 +2,5 @@
 
 set -ex
 
-bin/ci
-
 RAILS_ENV=staging bin/dotenv bin/kamal deploy
 RAILS_ENV=production bin/dotenv bin/kamal deploy
