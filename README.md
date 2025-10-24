@@ -80,6 +80,7 @@ kamal:
   proxy_host: your.deploy.url
   registry_server: registry.example.com
   registry_username: username
+  registry_password: password
   retain_containers: 2
   server: 192.123.456.789
   ssh_user: username
@@ -112,12 +113,9 @@ kamal:
 
 ### Setup bitwarden
 
-Then create a bitwarden account, and setup a secrets manager project for each environment with the following keys:
+Create a bitwarden account.
 
-```sh
-KAMAL_REGISTRY_PASSWORD
-RAILS_MASTER_KEY
-```
+Setup a secrets manager project for each environment and provide `RAILS_MASTER_KEY`.
 
 Projects should be named `notes-production`, `notes-staging`, etc (match `RAILS_ENV`).
 
