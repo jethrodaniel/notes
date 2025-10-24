@@ -4,7 +4,7 @@ class System::NotesTest < ApplicationSystemTestCase
   setup do
     @note = notes(:one)
 
-    login_as @note.user
+    sign_in_as @note.user
   end
 
   test "create a note" do

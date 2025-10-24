@@ -15,7 +15,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     driven_by :rack_test
   end
 
-  def login_as user
+  def sign_in_as user
     visit new_session_url
     fill_in "Email address", with: user.email_address
     fill_in "Password", with: "password"

@@ -7,7 +7,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get edit" do
-      login_as users(:one)
+      sign_in_as users(:one)
       get preferences_path
 
       assert_response :success
@@ -34,7 +34,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get edit in spanish" do
-      login_as users(:es)
+      sign_in_as users(:es)
       get preferences_path
 
       assert_response :success
@@ -63,7 +63,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
 
   class LanguageTests < self
     test "update language from english to spanish" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       assert_changes -> {
         users(:one).reload.preferences.language
@@ -80,7 +80,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update language from spanish to english" do
-      login_as users(:es)
+      sign_in_as users(:es)
 
       assert_changes -> {
         users(:es).reload.preferences.language
@@ -97,7 +97,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update language to an invalid value" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       patch preferences_path, params: {
         preferences: {language: "foobar"}
@@ -109,7 +109,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
 
   class NoteIndexTruncateLengthTests < self
     test "update note_index_truncate_length" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       assert_changes -> {
         users(:one).reload.preferences.note_index_truncate_length
@@ -126,7 +126,7 @@ class PreferencesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update language to an invalid value" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       patch preferences_path, params: {
         preferences: {note_index_truncate_length: "foobar"}

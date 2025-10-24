@@ -7,7 +7,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get index" do
-      login_as users(:one)
+      sign_in_as users(:one)
       get notes_url
 
       assert_response :success
@@ -18,7 +18,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get index in spanish" do
-      login_as users(:es)
+      sign_in_as users(:es)
       get notes_url
 
       assert_response :success
@@ -34,7 +34,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "create note" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       assert_difference("Note.count", 1) do
         post notes_url, params: {
@@ -53,7 +53,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get edit" do
-      login_as users(:one)
+      sign_in_as users(:one)
       get edit_note_url(notes(:one))
 
       assert_response :success
@@ -64,7 +64,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get edit in spanish" do
-      login_as users(:es)
+      sign_in_as users(:es)
       get edit_note_url(notes(:es_one))
 
       assert_response :success
@@ -75,7 +75,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "get edit only shows the user's notes" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       get edit_note_url(notes(:es_one))
 
@@ -89,7 +89,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update note" do
-      login_as users(:one)
+      sign_in_as users(:one)
       patch note_url(notes(:one)), params: {
         note: {content: "foo"}
       }
@@ -99,7 +99,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update note in spanish" do
-      login_as users(:es)
+      sign_in_as users(:es)
       patch note_url(notes(:es_one)), params: {
         note: {content: "foo"}
       }
@@ -109,7 +109,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "update note only allows updating the user's notes" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       patch note_url(notes(:es_one)), params: {
         note: {content: "foo"}
@@ -125,7 +125,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "destroy note" do
-      login_as users(:one)
+      sign_in_as users(:one)
       note = notes(:one)
 
       assert_difference("Note.count", -1) do
@@ -137,7 +137,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "destroy note in spanish" do
-      login_as users(:es)
+      sign_in_as users(:es)
       note = notes(:es_one)
 
       assert_difference("Note.count", -1) do
@@ -149,7 +149,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "destroy note only allows deleting the user's notes" do
-      login_as users(:one)
+      sign_in_as users(:one)
 
       delete note_url(notes(:es_one))
 
@@ -157,7 +157,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "destroy note (turbo stream)" do
-      login_as users(:one)
+      sign_in_as users(:one)
       note = notes(:one)
 
       delete note_url(note, format: :turbo_stream)
@@ -171,7 +171,7 @@ class NotesControllerTest < ActionDispatch::IntegrationTest
     end
 
     test "destroy note in spanish (turbo stream)" do
-      login_as users(:es)
+      sign_in_as users(:es)
       note = notes(:es_one)
 
       delete note_url(note, format: :turbo_stream)

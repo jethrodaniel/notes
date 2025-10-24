@@ -4,7 +4,7 @@ class System::SearchNotesTest < ApplicationSystemTestCase
   setup do
     Note.rebuild_full_text_search
 
-    login_as notes(:one).user
+    sign_in_as notes(:one).user
   end
 
   test "search notes" do # rubocop:disable Minitest/MultipleAssertions

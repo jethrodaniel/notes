@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class System::PreferencesTest < ApplicationSystemTestCase
   setup do
-    login_as users(:one)
+    sign_in_as users(:one)
   end
 
   test "sign out" do
