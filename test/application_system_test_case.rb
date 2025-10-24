@@ -9,7 +9,7 @@ end
 # https://stackoverflow.com/questions/37769915/disabling-javascript-when-using-capybara-selenium
 class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   case ENV["BROWSER"]
-  in "chrome" | "chromium"
+  in "chrome" | "chromium" | nil
     driven_by ENV["GUI"] ? :cuprite_debug : :cuprite, screen_size: [1400, 1400]
   in "rack-test"
     driven_by :rack_test
