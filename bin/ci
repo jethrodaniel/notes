@@ -1,13 +1,6 @@
-#!/usr/bin/env sh
+#!/usr/bin/env ruby
+require_relative "../config/boot"
+require "active_support/continuous_integration"
 
-set -ex
-
-# lint
-bundle exec rubocop
-npm run lint
-bundle exec brakeman --confidence-level 1 -q --no-summary
-bundle exec i18n-tasks health
-
-# test
-BROWSER=rack-test bin/rails test:all
-BROWSER=chrome bin/rails test:system
+CI = ActiveSupport::ContinuousIntegration
+require_relative "../config/ci.rb"
