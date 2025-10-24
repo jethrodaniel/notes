@@ -15,7 +15,7 @@
       <div class="flex justify-end gap-4 items-center">
         <%= link_to preferences_path,
           class: "w-12 h-10 p-3 flex items-center justify-center border border-zinc-400 dark:border-zinc-600 shadow rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-            <%= image_tag "bars-3.svg", class: "dark:invert" %>
+            <%= svg_icon "bars-3", class: "dark:invert" %>
             <div class="sr-only"><%= t(".preferences") %></div>
         <% end %>
       </div>
@@ -42,7 +42,7 @@
           <%= button_tag type: :submit,
             name: nil,
             class: "w-12 h-10 p-3 flex h-full items-center justify-center rounded-r-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-            <%= image_tag "magnifying-glass.svg", class: "dark:invert" %>
+            <%= svg_icon "magnifying-glass", class: "dark:invert" %>
             <div class="sr-only"><%= t(".search") %></div>
           <% end %>
         </div>
@@ -52,7 +52,7 @@
         <%= button_to notes_path,
           params: { note: { title: "", content: "" } },
           class: "w-12 h-10 p-3 hidden md:flex md:items-center md:justify-center border border-zinc-400 dark:border-zinc-600 shadow rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-          <%= image_tag "plus.svg", class: "dark:invert" %>
+          <%= svg_icon "plus", class: "dark:invert" %>
           <div class="sr-only"><%= t(".add_a_note") %></div>
         <% end %>
       </div>
@@ -94,7 +94,7 @@
   <%= button_to notes_path,
     params: { note: { title: "", content: "" } },
     form_class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] border border-zinc-400 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow rounded-lg size-16 z-1" do %>
-    <%= image_tag "plus.svg", class: "w-6 dark:invert" %>
+    <%= svg_icon "plus", class: "w-6 dark:invert" %>
     <div class="sr-only"><%= t(".add_a_note") %></div>
   <% end %>
 </div>

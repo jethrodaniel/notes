@@ -1,10 +1,10 @@
 <% content_for :title, t(".title") %>
 
-<div class="flex flex-col items-center md:w-5/6 w-full h-full gap-2">
-  <nav class="flex w-full justify-between min-h-12 px-2 py-3">
+<div class="flex flex-col items-center md:w-5/6 w-full px-2 h-full gap-2">
+  <nav class="flex w-full justify-between min-h-12 h-16 py-3">
     <%= link_to notes_path,
       class: "w-12 h-10 p-3 flex items-center justify-center border border-zinc-400 dark:border-zinc-600 shadow rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-       <%= image_tag "arrow-left.svg", class: "dark:invert" %>
+       <%= svg_icon "arrow-left", class: "dark:invert" %>
         <div class="sr-only"><%= t("shared.back_button") %></div>
     <% end %>
 
@@ -16,8 +16,8 @@
 
     <div class="flex items-center gap-2">
       <%= button_to edit_note_path(@note),
-        class: "p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-         <%= image_tag "star.svg", class: "w-6 dark:invert" %>
+        class: "w-12 h-10 p-3 flex h-full items-center justify-center rounded-r-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
+         <%= svg_icon "star", class: "w-6 dark:invert" %>
       <% end %>
 
       <%= button_to note_path(@note),
@@ -28,8 +28,8 @@
           action: "click->confirm#submit",
           confirm_message_value: t(".confirm_destroy")
         },
-        class: "p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
-         <%= image_tag "trash.svg", class: "w-6 dark:invert" %>
+        class: "w-12 h-10 p-3 flex h-full items-center justify-center rounded-r-lg hover:bg-zinc-200 dark:hover:bg-zinc-800" do %>
+         <%= svg_icon "trash", class: "dark:invert" %>
          <div class="sr-only"><%= t(".destroy_button") %></div>
       <% end %>
     </div>
