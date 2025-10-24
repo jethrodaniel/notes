@@ -7,8 +7,8 @@ CI.run "bin/ci", "Make it so" do
   step "Style: Javascript", "npm run lint"
   step "Style: Translations", "bundle exec i18n-tasks health"
 
-  # step "Security: Gem audit", "bin/bundler-audit"
-  # step "Security: Importmap vulnerability audit", "bin/importmap audit"
+  step "Security: Gem audit", "bin/bundler-audit"
+  step "Security: Importmap vulnerability audit", "bin/importmap audit"
   step "Security: Brakeman code analysis",
     "bin/brakeman --quiet --no-pager --exit-on-warn --exit-on-error"
 
