@@ -91,10 +91,12 @@
     <%= render "notes/empty_note_discarded" %>
   </div>
 
-  <%= button_to notes_path,
-    params: { note: { title: "", content: "" } },
-    form_class: "flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] border border-zinc-400 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow rounded-lg size-16 z-1" do %>
-    <%= svg_icon "plus", class: "w-6 dark:invert" %>
-    <div class="sr-only"><%= t(".add_a_note") %></div>
-  <% end %>
+  <div class="flex items-center justify-center md:hidden sticky bottom-4 ml-[calc(100vw-6rem)] border border-zinc-400 dark:border-zinc-600 bg-zinc-50 dark:bg-zinc-900 hover:bg-zinc-200 dark:hover:bg-zinc-800 shadow rounded-lg size-16 z-1">
+    <%= button_to notes_path,
+      params: { note: { title: "", content: "" } },
+      class: "w-12 h-10 p-3 flex justify-center items-center" do %>
+      <%= svg_icon "plus", class: "dark:invert" %>
+      <div class="sr-only"><%= t(".add_a_note") %></div>
+    <% end %>
+  </div>
 </div>
